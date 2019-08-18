@@ -1,3 +1,5 @@
+ 
+  
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -15,7 +17,7 @@
           <img src="asset/img/avatar04.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"><?= $username; ?></a>
         </div>
       </div>
 
@@ -40,7 +42,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a href="pages/users/index.php" class="nav-link bg-dark">
+            <a href="user.php" class="nav-link bg-dark">
                 <i class="fas fa-users"></i>&nbsp;&nbsp;&nbsp;Users
             </a>
           </li>
@@ -72,4 +74,4 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <div class="content">
+    <div class="content p-4">

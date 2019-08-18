@@ -1,3 +1,15 @@
+<?php
+
+session_start();
+$username = '';
+if(!isset($_SESSION['user_name'])){
+    header('location: login.php');
+}else{
+  $username = $_SESSION['user_name'];
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +23,9 @@
   <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
   <!-- Theme style -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="asset/css/adminlte.min.css">
+  <link rel="stylesheet" href="asset/css/main.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -48,6 +62,9 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
+      <a href="logout.php" class="nav-link text-danger">Logout</a>
+      <li class="nav-item">
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="fa fa-comments-o"></i>
