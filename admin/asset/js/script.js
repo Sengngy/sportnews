@@ -27,6 +27,15 @@ $(document).ready(function(){
  
     });
 
+    $('#cbotrash').on('change', function(e){
+        var result = $(this).val();
+        if(result == 1){
+            document.location = "http://localhost/sportnews/admin/user.php?status=1";
+        }else{
+            document.location = "http://localhost/sportnews/admin/user.php?status=0";
+        }
+    })
+
 });
 
 function preview(e){

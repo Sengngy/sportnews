@@ -1,6 +1,8 @@
 <?php
-
     include('lib/funcDB.php');
+    $select = '';
+    $status = '';
+    $message = '';
 
     // Insert User
     if(isset($_POST['btnAddUser'])){
@@ -26,7 +28,8 @@
            $sql = "INSERT INTO users(firstname, lastname, gender, email, phone, username, password,photo) VALUES ('{$firstname}', '{$lastname}', '{$gender}', '{$email}', '{$phone}', '{$username}', '{$pass}', '{$file_newname}')";
            $result = insertData($sql);
            if($result){
-            echo "<script>alert('Insert Successful')</script>";
+            $message = 'Insert Successful';
+            header('location: user.php?status=1&message=' . $message);
            }
         }else{
             echo "<script>alert('Your image is too big!')</script>";
@@ -34,7 +37,7 @@
     }
     // End Insert User
 
-
+    // Edit User
     if(isset($_POST['btnEditUser'])){
         $id = $_POST['id'];
         $firstname = $_POST['firstname'];
@@ -48,10 +51,38 @@
         $sql = "UPDATE users set firstname='{$firstname}', lastname='{$lastname}', gender='{$gender}', email='{$email}', phone='{$phone}', username='{$username}', password='{$pass}' where id='{$id}'";
         $result = updateData($sql);
         if($result){
-            echo "<script>alert('Updated!')</script>";
-            header('location: user.php');
+            header('location: user.php?status=1');
         }
-        
+    }
+    // End Edit User
+
+    // Softdelete (trash)
+    if(isset($_GET['delete_id'])){
+        $id = $_GET['delete_id'];
+        $sql = "UPDATE users set active=0 WHERE id=$id";
+        $result = softDelete($sql);
+        if($result){
+            $message = "Delete Successful!";
+            header('location: user.php?status=1&message=' . $message);
+        }
+    }
+    // End Softdelete (trash)
+
+
+    // Start recovery 
+    if(isset($_GET['recycle_id'])){
+        $id = $_GET['recycle_id'];
+        $sql = "UPDATE users set active=1 WHERE id=$id";
+        $result = softDelete($sql);
+        if($result){
+            header('location: user.php?status=0');
+        }
+    }
+    // End Recovery
+
+    if(isset($_GET['status'])){
+        $status = $_GET['status'];
+        $select = 'selected';
     }
 
 ?>
@@ -61,10 +92,25 @@
 <?php include('include/sidebar.php'); ?>
 
 <!-- start content for user here -->
-
+    <?php if(isset($_GET['message'])){ ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong><?php echo $_GET['message']; ?></strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php } ?>
     <br><br>
 
     <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#model-userAdd">Add User&nbsp;&nbsp;&nbsp;<i class="fas fa-users"></i></button>
+
+    <div class="trash float-right" style="width:100px;">
+        <select name="cbotrash" id="cbotrash" class="form-control">
+            <option value="1" <?php echo $status==1 ? $select : '' ?>>Active</option>
+            <option value="0" <?php echo $status==0 ? $select : '' ?>>Trash</option>
+        </select>
+    </div>
+
     <table class="table table-bordered table-hover text-center">
         <thead>
             <tr class="bg-dark">
@@ -77,13 +123,12 @@
                 <th>Username</th>
                 <th>Password</th>
                 <th>Photo</th>
-                <th>Active</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <?php 
-                $sql = "SELECT * FROM users";
+                $sql = "SELECT * FROM users WHERE active=$status";
                 $users = getData($sql);
                 $i=1;
                 foreach($users as $item){
@@ -99,10 +144,20 @@
                 <td style="vertical-align:middle"><?= $item['username'] ?></td>
                 <td style="vertical-align:middle"><?= $item['password'] ?></td>
                 <td style="vertical-align:middle"><img src="asset/upload/user/<?= $item['photo'] ?>" alt="" width="50px"></td>
-                <td style="vertical-align:middle"><?= $item['active'] ?></td>
                 <td style="vertical-align:middle">
                     <a href="#" id="btnEdit"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
-                    <a href="#"><i class="fas fa-trash"></i></a>
+                    <?php 
+                        if($status == 1){
+                    ?>
+                        <a href="user.php?delete_id=<?= $item['id'] ?>"><i class="fas fa-trash"></i></a>
+                    <?php   
+                        }else{
+                    ?>
+                        <a href="user.php?recycle_id=<?= $item['id'] ?>"><i class="fas fa-recycle"></i></a>
+                    <?php
+                        }
+                    ?>
+                    
                 </td>
             </tr>
             <?php 
@@ -120,7 +175,7 @@
                 <div class="modal-header border-bottom border-info">
                     <h3>Add User</h3>
                 </div>
-                <form action="user.php" method="post" enctype="multipart/form-data">
+                <form action="user.php?status=1" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-sm-6">

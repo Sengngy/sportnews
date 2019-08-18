@@ -42,7 +42,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a href="user.php" class="nav-link bg-dark">
+            <a href="user.php?status=1" class="nav-link bg-dark">
                 <i class="fas fa-users"></i>&nbsp;&nbsp;&nbsp;Users
             </a>
           </li>

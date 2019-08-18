@@ -39,7 +39,7 @@
     <style>
     
         body{
-            background-image: url('../img/5.jpg');
+            background-image: url('asset/img/background.jpg');
         }
 
         .overlay{
