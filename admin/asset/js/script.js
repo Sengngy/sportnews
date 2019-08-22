@@ -45,6 +45,15 @@ $(document).ready(function(){
         }
     })
 
+    $('#cboCategories').on('change', function(e){
+        var r = $(this).val();
+        if(r == 1){
+            document.location = "http://localhost/sportnews/admin/pages/categories/index.php?status=1";
+        }else{
+            document.location = "http://localhost/sportnews/admin/pages/categories/index.php?status=0";
+        }
+    })
+
     
 
 });

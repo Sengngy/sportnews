@@ -45,7 +45,7 @@
 
     function getMax($table, $field){
         $con = mysqli_connect(SERVER, USERNAME, PASSWORD, DB);
-        $sql = "SELECT max($field) AS maximum FROM $table";
+        $sql = "SELECT max($field) AS maximum FROM $table WHERE active=1";
         $result = mysqli_query($con, $sql);
         $row = mysqli_fetch_assoc($result);
         mysqli_close($con);

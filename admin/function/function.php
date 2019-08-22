@@ -92,6 +92,7 @@ EOT;
 
     function get_header(){
         $asset = asset();
+        $url = url();
         $header =<<<EOT
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
@@ -123,7 +124,7 @@ EOT;
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
             <!-- Messages Dropdown Menu -->
-            <a href="logout.php" class="nav-link text-danger">Logout</a>
+            <a href="{$url}/logout.php" class="nav-link text-danger">Logout</a>
             <li class="nav-item">
             </li>
             <li class="nav-item dropdown">
@@ -274,7 +275,7 @@ EOT;
                     </a>
                 </li>
                 <li class="nav-item has-treeview menu-open">
-                    <a href="#" class="nav-link bg-dark">
+                    <a href="{$url}/pages/categories/index.php?status=1" class="nav-link bg-dark">
                         <i class="fas fa-layer-group"></i>&nbsp;&nbsp;&nbsp;Categories
                     </a>
                 </li>
@@ -310,7 +311,7 @@ EOT;
         }else{
             if($user['password'] == $pass){
                 $_SESSION['user'] = $user;
-                header('location: index.php');
+                header('location: ' . url() . '/index.php');
             }else{
                 return "<p class='badge badge-danger'>Username or Password invalid!</p>";
             }
@@ -319,7 +320,7 @@ EOT;
 
     function is_login(){
         if(!isset($_SESSION['user'])){
-            header('location: login.php');
+            header('location: '. url() . '/login.php');
         }
     }
 

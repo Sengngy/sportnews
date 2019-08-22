@@ -52,15 +52,15 @@
   // end change status menu
 
   // recovery softdelete
+    
   if(isset($_GET['recycle_id'])){
-    $id = $_GET['recycle_id'];
-    $sql = "UPDATE menus set active=1 WHERE id=$id";
-    $result = softDelete($sql);
-    if($result){
-        header('location: '. url() .'/pages/menu/index.php?status=0');
+        $id = $_GET['recycle_id'];
+        $sql = "UPDATE menus set active=1 WHERE id=$id";
+        $result = softDelete($sql);
+        if($result){
+            header('location: '. url() .'/pages/menu/index.php?status=0');
+        }
     }
-}
-
     
 ?>
 
@@ -126,7 +126,7 @@
             foreach($menus as $menu){
               
           ?>
-              <tr>
+              <tr style="background-color:white">
                   <td><?= $i ?></td>
                   <td><?= $menu['menu_name'] ?></td>
                   <td><?= $menu['link'] ?></td>

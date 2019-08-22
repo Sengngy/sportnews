@@ -1,21 +1,20 @@
+
 <?php
 
-    session_start();
-    include('config.php');
-    include('lib/funcDB.php');
-    include('function/function.php');
-    $sms = '';
+session_start();
+include('config.php');
+include('lib/funcDB.php');
+include('function/function.php');
+$sms = '';
 
-    if(isset($_POST['btnLogin'])){
-        $username = $_POST['username'];
-        $pass = $_POST['password'];
+if(isset($_POST['btnLogin'])){
+    $username = $_POST['username'];
+    $pass = $_POST['password'];
 
-        $sms = login($username, $pass);
-
-    }
+    $sms = login($username, $pass);
+}
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,6 +69,8 @@
 </head>
 <body>
 
+
+
     <div class="overlay">
         <div class="box animated fadeIn">
             <div class="box-header text-center">
@@ -77,7 +78,7 @@
                 <?= $sms; ?>
             </div>
             <div class="box-content">
-                <form action="#" method="post">
+                <form action="" method="post">
                     <div class="form-group">
                         <label for="#"><b>Username:</b></label>
                         <input type="text" name="username" class="form-control" placeholder="Please input username .....">
