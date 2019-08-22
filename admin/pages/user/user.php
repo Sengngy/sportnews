@@ -1,11 +1,17 @@
 <?php
-    include('lib/funcDB.php');
+
+
+    include('../../config.php');
+    include('../../lib/funcDB.php');
+    include('../../function/function.php');
+
     $select = '';
     $status = '';
     $message = '';
 
     // Insert User
-    if(isset($_POST['btnAddUser'])){
+
+if(isset($_POST['btnAddUser'])){
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
         $gender = $_POST['gender'];
@@ -13,27 +19,22 @@
         $phone = $_POST['phone'];
         $username = $_POST['username'];
         $pass = $_POST['pass'];
+        
 
         // file
-        
-        $file_name = $_FILES['file-photo']['name'];
-        $file_tmp = $_FILES['file-photo']['tmp_name'];
-        $file_size = $_FILES['file-photo']['size'];
-        $file_ext = explode('.', $file_name);
-
-        if($file_size <= 71024){
-           $file_newname = rand(100,10000000).'-'.date('H-i-s') . '.' . $file_ext[1];
-           $target = 'asset/upload/user/' . $file_newname;
-           move_uploaded_file($file_tmp, $target);
-           $sql = "INSERT INTO users(firstname, lastname, gender, email, phone, username, password,photo) VALUES ('{$firstname}', '{$lastname}', '{$gender}', '{$email}', '{$phone}', '{$username}', '{$pass}', '{$file_newname}')";
-           $result = insertData($sql);
-           if($result){
-            $message = 'Insert Successful';
-            header('location: user.php?status=1&message=' . $message);
-           }
-        }else{
-            echo "<script>alert('Your image is too big!')</script>";
+        $photo = $_FILES['file-photo'];
+        $path = UPLOAD_PATH . '/user/';
+        $photo_name = upload($photo, $path);
+        $sql = "INSERT INTO users(firstname, lastname, gender, email, phone, username, password, photo) VALUES 
+            ('{$firstname}', '{$lastname}', '{$gender}', '{$email}', '{$phone}', '{$username}', '{$pass}', '{$photo_name}')
+            ";
+        $result = none_query($sql);
+        if($result){
+            $message = "Insert Sccessful!";
+            header('location: '. url() .'/pages/user/user.php?status=1&message=' . $message);
         }
+        
+        
     }
     // End Insert User
 
@@ -51,7 +52,8 @@
         $sql = "UPDATE users set firstname='{$firstname}', lastname='{$lastname}', gender='{$gender}', email='{$email}', phone='{$phone}', username='{$username}', password='{$pass}' where id='{$id}'";
         $result = updateData($sql);
         if($result){
-            header('location: user.php?status=1');
+            $message = "Update Successful!";
+            header('location: '. url() .'/pages/user/user.php?status=1');
         }
     }
     // End Edit User
@@ -63,7 +65,7 @@
         $result = softDelete($sql);
         if($result){
             $message = "Delete Successful!";
-            header('location: user.php?status=1&message=' . $message);
+            header('location: '. url() .'/pages/user/user.php?status=1&message=' . $message);
         }
     }
     // End Softdelete (trash)
@@ -75,7 +77,7 @@
         $sql = "UPDATE users set active=1 WHERE id=$id";
         $result = softDelete($sql);
         if($result){
-            header('location: user.php?status=0');
+            header('location: '. url() .'/pages/user/user.php?status=0');
         }
     }
     // End Recovery
@@ -87,11 +89,28 @@
 
 ?>
 
-<?php include('include/header.php'); ?>
 
-<?php include('include/sidebar.php'); ?>
+<?php include('../../template/header.php'); ?>
 
-<!-- start content for user here -->
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">User List</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard v2</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<section class="content">
+    <div class="container-fluid">
     <?php if(isset($_GET['message'])){ ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong><?php echo $_GET['message']; ?></strong>
@@ -111,7 +130,7 @@
         </select>
     </div>
 
-    <table class="table table-bordered table-hover text-center">
+    <table class="table table-bordered table-hover text-center" id="data">
         <thead>
             <tr class="bg-dark">
                 <th>#</th>
@@ -143,17 +162,17 @@
                 <td style="vertical-align:middle"><?= $item['phone'] ?></td>
                 <td style="vertical-align:middle"><?= $item['username'] ?></td>
                 <td style="vertical-align:middle"><?= $item['password'] ?></td>
-                <td style="vertical-align:middle"><img src="asset/upload/user/<?= $item['photo'] ?>" alt="" width="50px"></td>
+                <td style="vertical-align:middle"><img src="<?= asset() ?>/upload/user/<?= $item['photo'] ?>" alt="" width="50px"></td>
                 <td style="vertical-align:middle">
                     <a href="#" id="btnEdit"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
                     <?php 
                         if($status == 1){
                     ?>
-                        <a href="user.php?delete_id=<?= $item['id'] ?>"><i class="fas fa-trash"></i></a>
+                        <a href="?delete_id=<?= $item['id'] ?>"><i class="fas fa-trash"></i></a>
                     <?php   
                         }else{
                     ?>
-                        <a href="user.php?recycle_id=<?= $item['id'] ?>"><i class="fas fa-recycle"></i></a>
+                        <a href="?recycle_id=<?= $item['id'] ?>"><i class="fas fa-recycle"></i></a>
                     <?php
                         }
                     ?>
@@ -216,7 +235,7 @@
                                 <label for="">Photo</label>
                                 <div class="block-photo">
                                     <input type="file" name="file-photo" class="file-photo" onchange="preview(event)" accept="image/x-png,image/jpeg,image/jpg,image/gif">
-                                    <img src="asset/img/NoImage.png" alt="" width="200px" id="img-preview">
+                                    <img src="<?= asset(); ?>/img/NoImage.png" alt="" width="200px" id="img-preview">
                                 </div>
                             </div>
                         </div>
@@ -280,7 +299,7 @@
                                 <label for="">Photo</label>
                                 <div class="block-photo">
                                     <input type="file" name="file-photo" class="file-photo" onchange="previewEdit(event)" accept="image/x-png,image/jpeg,image/jpg,image/gif">
-                                    <img src="asset/img/NoImage.png" alt="" width="200px" id="img-preview-edit">
+                                    <img src="<?= asset(); ?>/img/NoImage.png" alt="" width="200px" id="img-preview-edit">
                                 </div>
                             </div>
                         </div>
@@ -295,5 +314,12 @@
     <!-- End Model -->
 
 <!-- end content for user here -->
+    </div>
+</section>
 
-<?php include('include/footer.php'); ?>
+<!-- start content for user here -->
+    
+
+<?php include('../../template/footer.php'); ?>
+
+

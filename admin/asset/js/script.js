@@ -30,11 +30,22 @@ $(document).ready(function(){
     $('#cbotrash').on('change', function(e){
         var result = $(this).val();
         if(result == 1){
-            document.location = "http://localhost/sportnews/admin/user.php?status=1";
+            document.location = "http://localhost/sportnews/admin/pages/user/user.php?status=1";
         }else{
-            document.location = "http://localhost/sportnews/admin/user.php?status=0";
+            document.location = "http://localhost/sportnews/admin/pages/user/user.php?status=0";
         }
     })
+
+    $('#cboMenu').on('change', function(e){
+        var r = $(this).val();
+        if(r == 1){
+            document.location = "http://localhost/sportnews/admin/pages/menu/index.php?status=1";
+        }else{
+            document.location = "http://localhost/sportnews/admin/pages/menu/index.php?status=0";
+        }
+    })
+
+    
 
 });
 

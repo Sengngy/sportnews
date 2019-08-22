@@ -1,28 +1,17 @@
 <?php
 
     session_start();
-
+    include('config.php');
     include('lib/funcDB.php');
+    include('function/function.php');
     $sms = '';
 
     if(isset($_POST['btnLogin'])){
         $username = $_POST['username'];
         $pass = $_POST['password'];
 
-        $sql = "select * from users where username='{$username}'";
-        $user = getData($sql);
-        $user = mysqli_fetch_assoc($user);
-        
-        if($username != $user['username']){
-            $sms = '<p class="badge badge-danger">Invalid username or password</p>';
-        }else{
-            if($user['password'] != $pass){
-                $sms = '<p class="badge badge-danger">Invalid username or password</p>';
-            }else{
-                $_SESSION['user_name'] = $user['username'];
-                header('location: dashboard.php');
-            }
-        }
+        $sms = login($username, $pass);
+
     }
 
 ?>
