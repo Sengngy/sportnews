@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include('config.php');
     include('lib/funcDB.php');
     include('function/function.php');
@@ -30,14 +31,14 @@
                 <!-- small box -->
                 <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3>44</h3>
+                    <h3><?php echo getCountByID('users', 'id'); ?></h3>
 
-                    <p>User Registrations</p>
+                    <p>Staff Registrations</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-users"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="<?= url() . '/pages/user/user.php?status=1' ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->

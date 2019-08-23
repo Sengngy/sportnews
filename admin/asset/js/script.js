@@ -27,6 +27,9 @@ $(document).ready(function(){
  
     });
 
+    
+
+
     $('#cbotrash').on('change', function(e){
         var result = $(this).val();
         if(result == 1){

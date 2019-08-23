@@ -52,4 +52,20 @@
         return (int) $row['maximum'];
     }
 
+    function getCountByID($table, $id){
+        $con = mysqli_connect(SERVER, USERNAME, PASSWORD, DB);
+        $sql = "SELECT count($id) AS total FROM $table";
+        $result = mysqli_query($con, $sql);
+        $row = mysqli_fetch_assoc($result);
+        mysqli_close($con);
+        return (int) $row['total'];
+    }
+
+    function getSubCategory($table, $field){
+        $con = mysqli_connect(SERVER, USERNAME, PASSWORD, DB);
+        $sql = "SELECT id, $field FROM $table";
+        $result = mysqli_query($con, $sql);
+        return $result;
+    }
+
 ?>

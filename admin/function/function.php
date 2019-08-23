@@ -20,6 +20,7 @@
         <!-- Font Awesome -->
         <link rel="stylesheet" href="{$asset}/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
+        
         <!-- Ionicons -->
         <!-- DataTables -->
         <link rel="stylesheet" href="{$asset}/datatables/dataTables.bootstrap4.css">
@@ -62,6 +63,7 @@ EOT;
         <script src="{$asset}/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- Sparkline -->
         <script src="{$asset}/sparkline/jquery.sparkline.min.js"></script>
+        
         <!-- jvectormap -->
         <script src="{$asset}/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
         <script src="{$asset}/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
@@ -93,6 +95,9 @@ EOT;
     function get_header(){
         $asset = asset();
         $url = url();
+        $photo = ASSET . '/upload/user/' . $_SESSION['user']['photo'];
+        $username = $_SESSION['user']['username'];
+        $email = $_SESSION['user']['email'];
         $header =<<<EOT
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
@@ -129,91 +134,22 @@ EOT;
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="fa fa-comments-o"></i>
-                <span class="badge badge-danger navbar-badge">3</span>
+                <i class="fas fa-info-circle"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                    <img src="{$asset}/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                    <img src="{$photo}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                     <div class="media-body">
                         <h3 class="dropdown-item-title">
-                        Brad Diesel
-                        <span class="float-right text-sm text-danger"><i class="fa fa-star"></i></span>
+                        {$username}
                         </h3>
-                        <p class="text-sm">Call me whenever you can...</p>
-                        <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
+                        <p class="text-sm">{$email}</p>
                     </div>
                     </div>
                     <!-- Message End -->
                 </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                    <img src="{$asset}/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                    <div class="media-body">
-                        <h3 class="dropdown-item-title">
-                        John Pierce
-                        <span class="float-right text-sm text-muted"><i class="fa fa-star"></i></span>
-                        </h3>
-                        <p class="text-sm">I got your message bro</p>
-                        <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
-                    </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                    <img src="{$asset}/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                    <div class="media-body">
-                        <h3 class="dropdown-item-title">
-                        Nora Silvester
-                        <span class="float-right text-sm text-warning"><i class="fa fa-star"></i></span>
-                        </h3>
-                        <p class="text-sm">The subject goes here</p>
-                        <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
-                    </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-                </div>
-            </li>
-            <!-- Notifications Dropdown Menu -->
-            <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="fa fa-bell-o"></i>
-                <span class="badge badge-warning navbar-badge">15</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-header">15 Notifications</span>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fa fa-envelope mr-2"></i> 4 new messages
-                    <span class="float-right text-muted text-sm">3 mins</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fa fa-users mr-2"></i> 8 friend requests
-                    <span class="float-right text-muted text-sm">12 hours</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fa fa-file mr-2"></i> 3 new reports
-                    <span class="float-right text-muted text-sm">2 days</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
-                    class="fa fa-th-large"></i></a>
             </li>
             </ul>
         </nav>
@@ -242,6 +178,8 @@ EOT;
     function get_sidebar(){
         $url = url();
         $asset = asset();
+        $fullname = $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'];
+        $photo = ASSET . '/upload/user/' . $_SESSION['user']['photo'];
         $sidebar =<<<EOT
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -257,10 +195,10 @@ EOT;
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                <img src="{$asset}/img/avatar04.png" class="img-circle elevation-2" alt="User Image">
+                <img src="{$photo}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                <a href="#" class="d-block"></a>
+                <a href="#" class="d-block">$fullname</a>
                 </div>
             </div>
 
@@ -270,7 +208,7 @@ EOT;
                 <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
                 <li class="nav-item has-treeview menu-open">
-                    <a href="#" class="nav-link bg-dark">
+                    <a href="{$url}/pages/news/index.php?status=1" class="nav-link bg-dark">
                         <i class="fas fa-newspaper"></i>&nbsp;&nbsp;&nbsp;News
                     </a>
                 </li>
