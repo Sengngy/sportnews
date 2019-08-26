@@ -110,7 +110,7 @@ if(isset($_POST['btnAddUser'])){
 </div>
 
 <section class="content">
-    <div class="container-fluid">
+<div class="container-fluid">
     <?php if(isset($_GET['message'])){ ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong><?php echo $_GET['message']; ?></strong>
@@ -130,10 +130,13 @@ if(isset($_POST['btnAddUser'])){
         </select>
     </div>
 
-    <table class="table table-bordered table-hover text-center" id="data">
+    <br><br><br>
+
+    <table class="table table-bordered table-hover text-center" id="dataTableUser">
         <thead>
             <tr class="bg-dark">
                 <th>#</th>
+                <th style="display:none">ID</th>
                 <th>Firstname</th>
                 <th>Lastname</th>
                 <th>Gender</th>
@@ -184,6 +187,7 @@ if(isset($_POST['btnAddUser'])){
                 } 
             ?>
         </tbody>
+
     </table>    
 
 
@@ -314,11 +318,19 @@ if(isset($_POST['btnAddUser'])){
     <!-- End Model -->
 
 <!-- end content for user here -->
-    </div>
 </section>
 
 <!-- start content for user here -->
+
+<?php include('../../template/footer1.php'); ?>
     
+<script>
+
+    $(document).ready(function(){
+        $('#dataTableUser').DataTable();
+    });
+
+</script>
 
 <?php include('../../template/footer.php'); ?>
 

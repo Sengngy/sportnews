@@ -8,9 +8,30 @@
 <?php include('../../template/header.php'); ?>
 
 <?php
+
+    $sms= '';
+    
     if(isset($_POST['btnAdd'])){
-        $longdesc = $_POST['longDesc'];
-        var_dump($longdesc);
+        $uid = $_POST['user_id'];
+        $title = $_POST['title'];
+        $type = $_POST['type'];
+        $sub = $_POST['sub'];
+        $shotdesc = $_POST['shortDesc'];
+        $longdesc = htmlspecialchars($_POST['longDesc']);
+        $feature_image = $_FILES['file-photo'];
+
+        $path = UPLOAD_PATH . '/news/';
+        $file_name = upload($feature_image, $path);
+
+        $sql = "INSERT INTO news(title, short_desc, long_desc, feature_image, type, user_id, cat_id)
+                VALUES('{$title}','{$shotdesc}','{$longdesc}','{$file_name}','{$type}','{$uid}','{$sub}')
+                ";
+
+        $result = none_query($sql);
+        if($result){
+            $sms = "Insert Successful!";
+        }
+        
     }
 ?>
 
@@ -36,6 +57,15 @@
 
 <br><br>
 
+<?php if($sms != ''){ ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong><?php echo $sms; ?></strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php } ?>
+
 <div class="card card-info">
     <div class="card-header"><h3>Add News</h3></div>
     <form action="" class="horizontal p-3" method="post" enctype="multipart/form-data"> 
@@ -51,9 +81,8 @@
                         <label for="">Type</label>
                         <select name="type" class="form-control">
                             <option value="">--select--</option>
-                            <option value="image">Image</option>
+                            <option value="photo">Photo</option>
                             <option value="video">Video</option>
-                            <option value="text">Text</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -75,7 +104,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Long Description</label>
-                        <textarea name="longDesc" id="longDesc" cols="30" rows="15" class="form-control"></textarea>
+                        <textarea name="longDesc" id="longDesc" class="form-control"></textarea>
                     </div>
                     <div class="card-footer">
                         <button class="btn btn-primary float-right" name="btnAdd">ADD</button>
@@ -95,9 +124,21 @@
 
 
 
-<script src="//cdn.ckeditor.com/4.12.1/full/ckeditor.js"></script>
-<script>
-     CKEDITOR.replace('longDesc');
-</script>
+<?php include('../../template/footer1.php'); ?>
+
+<script> 
+    var roxyFileman = '<?= url(); ?>/fileman/index.html'; 
+    $(function(){
+    CKEDITOR.replace( 'longDesc',
+        {
+            filebrowserBrowseUrl:roxyFileman,
+            filebrowserImageBrowseUrl:roxyFileman+'?type=image',
+            removeDialogTabs: 'link:upload;image:upload',
+            height:500,
+    
+        }); 
+
+    });
+ </script>
 
 <?php include('../../template/footer.php'); ?>

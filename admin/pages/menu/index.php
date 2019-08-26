@@ -108,8 +108,10 @@
             </button>
         </div>
     <?php } ?>
+    
+    <br><br>
 
-    <table class="table table-bordered table-hover text-center" id="dataTable">
+    <table class="table table-bordered table-hover text-center" id="dataTableMenu">
         <thead>
             <tr class="bg-dark">
                 <th>#</th>
@@ -172,5 +174,16 @@
 
     </div>
 </section>
+
+<?php include('../../template/footer1.php'); ?>
+
+<script>
+
+    $(document).ready(function(){
+        $('#dataTableMenu').DataTable();
+    });
+
+</script>
+
 
 <?php include('../../template/footer.php'); ?>

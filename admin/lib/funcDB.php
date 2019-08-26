@@ -68,4 +68,24 @@
         return $result;
     }
 
+    function getByUser($id){
+        $con = mysqli_connect(SERVER, USERNAME, PASSWORD, DB);
+        $sql = "SELECT lastname FROM users WHERE id=$id";
+        $result = mysqli_query($con, $sql);
+        $row = mysqli_fetch_assoc($result);
+        mysqli_close($con);
+        return  $row['lastname'];
+    }
+
+    function getByCat($id){
+        $con = mysqli_connect(SERVER, USERNAME, PASSWORD, DB);
+        $sql = "SELECT cat_name FROM categories WHERE id=$id";
+        $result = mysqli_query($con, $sql);
+        $row = mysqli_fetch_assoc($result);
+        mysqli_close($con);
+        return  $row['cat_name'];
+    }
+
+    
+
 ?>

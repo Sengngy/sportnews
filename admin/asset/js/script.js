@@ -57,6 +57,15 @@ $(document).ready(function(){
         }
     })
 
+    $('#cboNews').on('change', function(e){
+        var r = $(this).val();
+        if(r == 1){
+            document.location = "http://localhost/sportnews/admin/pages/news/index.php?status=1";
+        }else{
+            document.location = "http://localhost/sportnews/admin/pages/news/index.php?status=0";
+        }
+    })
+
     
 
 });

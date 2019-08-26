@@ -85,4 +85,6 @@
 
 <!-- end form edit categories -->
 
+<?php include('../../template/footer1.php'); ?>
+
 <?php include('../../template/footer.php'); ?>

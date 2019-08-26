@@ -12,6 +12,7 @@
 
     if(isset($_GET['status'])){
         $status = $_GET['status'];
+        $select = "selected";
     }
 ?>
 
@@ -37,13 +38,15 @@
 <a href="<?= url() . '/pages/news/index.php?status=1' ?>" class="btn btn-primary mb-3 ml-3">Refresh&nbsp;&nbsp;&nbsp;<i class="fas fa-sync-alt"></i></a>
 
 <div class="trash float-right" style="width:100px;">
-    <select name="cboMenu" id="cboMenu" class="form-control">
+    <select name="cboNews" id="cboNews" class="form-control">
         <option value="1" <?php echo $status==1 ? $select : '' ?>>Active</option>
         <option value="0" <?php echo $status==0 ? $select : '' ?>>Trash</option>
     </select>
 </div>
 
-<table class="table table-bordered table-hover text-center" id="dataTable">
+<br><br><br>
+
+<table class="table table-bordered table-hover text-center" id="dataTableNews">
         <thead>
             <tr class="bg-dark">
                 <th>#</th>
@@ -55,8 +58,50 @@
             </tr>
         </thead>
         <tbody>
-            
+            <?php
+                $sql = "SELECT * FROM news WHERE active=$status";
+                $news = query($sql);
+                $i = 1;
+                foreach($news as $new){
+            ?>
+                <tr>
+                    <td><?= $i; ?></td>
+                    <td><?= $new['title']; ?></td>
+                    <td><?= $new['type']; ?></td>
+                    <td><?= getByUser($new['user_id']); ?></td>
+                    <td><?= getByCat($new['cat_id']); ?></td>
+                    <td>
+                    <a href="<?= url() . '/pages/news/edit.php?id=' . $new['id'] ?>" id="btnEdit"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
+                        <?php 
+                            if($status == 1){
+                        ?>
+                            <a href="?delete_id=<?= $new['id'] ?>"><i class="fas fa-trash"></i></a>
+                        <?php   
+                            }else{
+                        ?>
+                            <a href="?recycle_id=<?= $new['id'] ?>"><i class="fas fa-recycle"></i></a>
+                        <?php
+                            
+                            }
+                        ?>
+                    </td>
+                </tr>
+            <?php
+                $i++;
+                }
+            ?>
         </tbody>
 </table>
+
+
+<?php include('../../template/footer1.php'); ?>
+
+<script>
+
+    $(document).ready(function(){
+        $('#dataTableNews').DataTable();
+    });
+
+</script>
 
 <?php include('../../template/footer.php'); ?>

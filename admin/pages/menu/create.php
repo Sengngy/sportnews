@@ -95,4 +95,6 @@
 
 <!-- end form create menu -->
 
+<?php include('../../template/footer1.php'); ?>
+
 <?php include('../../template/footer.php'); ?>

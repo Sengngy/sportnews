@@ -12,26 +12,25 @@
         return UPLOAD_PATH;
     }
 
+
     function get_css(){
         $asset = asset();
         $css =<<<EOT
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="{$asset}/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
-        
-        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
         <!-- DataTables -->
-        <link rel="stylesheet" href="{$asset}/datatables/dataTables.bootstrap4.css">
-        
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="{$asset}/css/adminlte.min.css">
         <!-- iCheck -->
         <link rel="stylesheet" href="{$asset}/iCheck/flat/blue.css">
-    
+        <!-- Morris chart -->
+        <link rel="stylesheet" href="{$asset}/morris/morris.css">
         <!-- jvectormap -->
         <link rel="stylesheet" href="{$asset}/jvectormap/jquery-jvectormap-1.2.2.css">
         <!-- Date Picker -->
@@ -47,23 +46,26 @@ EOT;
         echo $css;
     }
 
+
     function get_js(){
         $asset = asset();
         $js =<<<EOT
+        <!-- jQuery -->
         <script src="{$asset}/jquery/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="  https://code.jquery.com/jquery-3.3.1.js"></script>
         <!-- jQuery UI 1.11.4 -->
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
         <script>
         $.widget.bridge('uibutton', $.ui.button)
         </script>
         <!-- Bootstrap 4 -->
         <script src="{$asset}/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Morris.js charts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="{$asset}/morris/morris.min.js"></script>
         <!-- Sparkline -->
         <script src="{$asset}/sparkline/jquery.sparkline.min.js"></script>
-        
         <!-- jvectormap -->
         <script src="{$asset}/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
         <script src="{$asset}/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
@@ -84,9 +86,17 @@ EOT;
         <script src="{$asset}/js/adminlte.js"></script>
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
         <script src="{$asset}/js/pages/dashboard.js"></script>
-        <!-- AdminLTE for demo purposes -->
+        <!-- DataTables -->
+        <script src="{$asset}/datatables/jquery.dataTables.js"></script>
+        <script src="{$asset}/datatables/dataTables.bootstrap4.js"></script>  
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
         
+        
+        // CKEDITOR
         <script src="{$asset}/js/demo.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="{$asset}/ckeditor/ckeditor.js"></script>
         <script src="{$asset}/js/script.js"></script>
 EOT;
         echo $js;
@@ -99,19 +109,18 @@ EOT;
         $username = $_SESSION['user']['username'];
         $email = $_SESSION['user']['email'];
         $header =<<<EOT
-        <!-- Navbar -->
         <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
-            <!-- Left navbar links -->
+        <!-- Left navbar links -->
             <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="index3.html" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Contact</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="index3.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link">Contact</a>
+                </li>
             </ul>
 
             <!-- SEARCH FORM -->
@@ -129,30 +138,31 @@ EOT;
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
             <!-- Messages Dropdown Menu -->
-            <a href="{$url}/logout.php" class="nav-link text-danger">Logout</a>
-            <li class="nav-item">
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="fas fa-info-circle"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                    <img src="{$photo}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                    <div class="media-body">
-                        <h3 class="dropdown-item-title">
-                        {$username}
-                        </h3>
-                        <p class="text-sm">{$email}</p>
+                <li class="nav-item"><a href="{$url}/logout.php" class="nav-link text-danger" >Logout</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fas fa-info-circle"></i>
+                    <span class="badge badge-danger navbar-badge">3</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                            <img src="{$photo}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                {$username}
+                                <span class="float-right text-sm text-danger"><i class="fa fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">{$email}</p>
+                            </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
                     </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
-            </li>
+                </li>
             </ul>
-        </nav>
+  </nav>
 EOT;
         echo $header;
     }
@@ -162,12 +172,11 @@ EOT;
     
         $footer =<<<EOT
         <footer class="main-footer">
-        <!-- To the right -->
-        <div class="float-right d-none d-sm-inline">
-        Anything you want
-        </div>
-        <!-- Default to the left -->
-        <strong>Copyright &copy; 2014-2018 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2014-2018 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+            <b>Version</b> 3.0.0-alpha
+            </div>
         </footer>
 EOT;
         echo $footer;
@@ -181,13 +190,12 @@ EOT;
         $fullname = $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'];
         $photo = ASSET . '/upload/user/' . $_SESSION['user']['photo'];
         $sidebar =<<<EOT
-        <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="{$url}" class="brand-link">
             <img src="{$asset}/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                 style="opacity: .8">
-            <span class="brand-text font-weight-light">Dashboard</span>
+            <span class="brand-text font-weight-light">AdminLTE 3</span>
             </a>
 
             <!-- Sidebar -->
@@ -198,35 +206,39 @@ EOT;
                 <img src="{$photo}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                <a href="#" class="d-block">$fullname</a>
+                <a href="#" class="d-block">{$fullname}</a>
                 </div>
             </div>
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
+                    <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
-                <li class="nav-item has-treeview menu-open">
-                    <a href="{$url}/pages/news/index.php?status=1" class="nav-link bg-dark">
-                        <i class="fas fa-newspaper"></i>&nbsp;&nbsp;&nbsp;News
-                    </a>
-                </li>
-                <li class="nav-item has-treeview menu-open">
-                    <a href="{$url}/pages/categories/index.php?status=1" class="nav-link bg-dark">
-                        <i class="fas fa-layer-group"></i>&nbsp;&nbsp;&nbsp;Categories
-                    </a>
-                </li>
-                <li class="nav-item has-treeview menu-open">
-                    <a href="{$url}/pages/menu/index.php?status=1"" class="nav-link bg-dark">
-                        <i class="fas fa-bars"></i>&nbsp;&nbsp;&nbsp;Menus
-                    </a>
-                </li>
-                <li class="nav-item has-treeview menu-open">
-                    <a href="{$url}/pages/user/user.php?status=1" class="nav-link bg-dark">
-                        <i class="fas fa-users"></i>&nbsp;&nbsp;&nbsp;Users
-                    </a>
-                </li>
+                    <li class="nav-item ">
+                        <a href="{$url}/pages/news/index.php?status=1" class="nav-link bg-dark">
+                        <i class="fas fa-newspaper"></i>&nbsp;&nbsp;&nbsp;
+                        <p>News</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="{$url}/pages/categories/index.php?status=1" class="nav-link bg-dark">
+                        <i class="fas fa-layer-group"></i>&nbsp;&nbsp;&nbsp;
+                        <p>Categories</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="{$url}/pages/menu/index.php?status=1" class="nav-link bg-dark">
+                        <i class="fas fa-bars"></i>&nbsp;&nbsp;&nbsp;
+                        <p>Menus</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="{$url}/pages/user/user.php?status=1" class="nav-link bg-dark">
+                        <i class="fas fa-users"></i>&nbsp;&nbsp;&nbsp;
+                        <p>Users</p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -278,6 +290,125 @@ EOT;
     }
 
 
+    // Front
+
+    function asset_front(){
+        return ASSET_FRONT;
+    }
+
+
+    function url_front(){
+        return URL_FRONT;
+    }
+
+
+    function get_css_front(){
+        $asset_front = asset_front();
+        $css =<<<EOT
+        <link rel="stylesheet" href="{$asset_front}/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
+        <link rel="stylesheet" href="{$asset_front}/css/style.css">
+EOT;
+        echo $css;
+    }
+
+
+    function get_js_front(){
+        $asset_front = asset_front();
+        $js =<<<EOT
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="{$asset_front}/js/bootstrap.min.js"></script>
+EOT;
+        echo $js;
+    }
+
+?>
+
+
+<?php
+    function get_menu_front(){
+        $asset_front = asset_front();
+        $sql = "select menu_name, link from menus where active=1 order by menu_order ASC";
+        $result = query($sql);
+?>
+        <div class='menu-top bg-light'>
+        <div class='container'>
+            <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+                <a class='navbar-brand' href='#'>SportNews</a>
+                <button class='navbar-toggler' type='button' data-toggle='collapse'
+                    data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false'
+                    aria-label='Toggle navigation'>
+                    <span class='navbar-toggler-icon'></span>
+                </button>
+                <div class='collapse navbar-collapse' id='navbarSupportedContent'>
+                    <ul class='navbar-nav ml-auto'>
+                        <?php foreach($result as $item){  ?>
+
+                        <li class='nav-item'>
+                            <a class='nav-link text-primary' href='<?= $item['link'] ?>'><?= $item['menu_name'] ?></a>
+                        </li>
+
+                        <?php } ?>
+                
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+<?php
+    }
+?>    
+
+
+
+
+<?php
+    function get_big_ads(){
+        $asset_front = asset_front();
+        $big_ads =<<<EOT
+        <!-- big Ads -->
+        <div class="container mb-5 mt-3">
+            <div class="big-ads">
+                <img src="{$asset_front}/img/ads1.jpg" alt="" width="100%">
+            </div>
+        </div>
+        <!-- end Big Ads -->
+EOT;
+        echo $big_ads;
+    }
+
+
+    function get_sm_ads(){
+        $asset_front = asset_front();
+        $sm_ads =<<<EOT
+        <div class="ads-item mb-3">
+            <img src="{$asset_front}/img/ads2.jpg" alt="" width="100%">
+        </div>
+        <div class="ads-item mb-3">
+            <img src="{$asset_front}/img/ads4.jpg" alt="" width="100%">
+        </div>
+EOT;
+        echo $sm_ads;
+    }
+
+
+    function get_newest_news(){
+        $asset_front = asset_front();
+        $newest_news =<<<EOT
+        <div class="newest-news">
+            <div class="header-newest-news">
+                <p>ព័ត៌មានថ្មីៗ</p>
+            </div>
+            <ul class="item-newest-news">
+                <li><a href="#">ប្រវត្តិ​សាស្ត្រ​ហើយ ​កម្ពុជា ​ទម្លាក់​​វៀតណាម ពី AFF U18</a></li>
+                <li><a href="#">បUEFA ប្រកាស​ពី​បេក្ខភាព​​ ៣រូប​ចុងក្រោយ​នៃ​ពាន​កីឡាករ​ឆ្នើម​ប្រចាំ​ឆ្នាំ</a></li>
+                <li><a href="#">ប្រវត្តិ​សាស្ត្រ​ហើយ ​កម្ពុជា ​ទម្លាក់​​វៀតណាម ពី AFF U18</a></li>
+            </ul>
+        </div>
+EOT;
+        echo $newest_news;
+    }
     
 
 

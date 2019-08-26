@@ -82,7 +82,9 @@
         </div>
     <?php } ?>
 
-    <table class="table table-bordered table-hover text-center" id="dataTable">
+    <br><br>
+
+    <table class="table table-bordered table-hover text-center" id="dataTableCat">
         <thead>
             <tr class="bg-dark">
                 <th>#</th>
@@ -125,5 +127,16 @@
 
     </div>
 </section>
+
+
+<?php include('../../template/footer1.php'); ?>
+
+<script>
+
+    $(document).ready(function(){
+        $('#dataTableCat').DataTable();
+    });
+
+</script>
 
 <?php include('../../template/footer.php'); ?>
