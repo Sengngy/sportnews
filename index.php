@@ -8,9 +8,9 @@
 <?php include('template/header.php'); ?>
 
 
-        <div class="row">
+        
             <!-- start Conent -->
-            <div class="col-sm-9 content">
+            <div class="col-sm-9 content" style="border-right:1px solid #e0e0e0;">
                 <!-- Start lestes news  -->
                 <div class="lastes-new">
                     <!-- lestes new title -->
@@ -34,81 +34,57 @@
                         <div id="lastes-news-slide" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active" data-interval="2500">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="card">
-                                                <img src="asset/img/ads1.jpg" class="card-img-top" alt="..."
-                                                    height="130">
-                                                <div class="card-body">
-                                                    <p class="card-title">Card title</p>
-                                                    <p class="card-text">Some quick example text to build on the card
-                                                        title and make
-                                                        up the bulk of the card's content.</p>
-                                                </div>
+                                    <div class="card-deck">
+                                        <div class="card">
+                                            <a href="#"><img src="asset/img/ads1.jpg" class="card-img-top" alt="..." width="100%"></a>
+                                            <div class="card-body">
+                                                <a href="#">Title<p class="card-title" style="font-size:15px"></p></a>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4">
-                                            <div class="card">
-                                                <img src="asset/img/ads1.jpg" class="card-img-top" alt="..."
-                                                    height="130">
-                                                <div class="card-body">
-                                                    <p class="card-title">Card title</p>
-                                                    <p class="card-text">Some quick example text to build on the card
-                                                        title and make
-                                                        up the bulk of the card's content.</p>
-                                                </div>
+                                        <div class="card">
+                                            <a href="#"><img src="asset/img/ads1.jpg" class="card-img-top" alt="..." width="100%"></a>
+                                            <div class="card-body">
+                                                <a href="#">Title<p class="card-title" style="font-size:15px"><b></b></p></a>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4">
-                                            <div class="card">
-                                                <img src="asset/img/ads1.jpg" class="card-img-top" alt="..."
-                                                    height="130">
-                                                <div class="card-body">
-                                                    <p class="card-title">Card title</p>
-                                                    <p class="card-text">Some quick example text to build on the card
-                                                        title and make
-                                                        up the bulk of the card's content.</p>
-                                                </div>
+                                        <div class="card">
+                                            <a href="#"><img src="asset/img/ads1.jpg" class="card-img-top" alt="..." width="100%"></a>
+                                            <div class="card-body">
+                                                <a href="#">Title<p class="card-title" style="font-size:15px"><b></b></p></a>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <a href="#"><img src="asset/img/ads1.jpg" class="card-img-top" alt="..." width="100%"></a>
+                                            <div class="card-body">
+                                                <a href="#">Title<p class="card-title" style="font-size:15px"><b></b></p></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="carousel-item" data-interval="2500">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="card">
-                                                <img src="asset/img/ads1.jpg" class="card-img-top" alt="..."
-                                                    height="130">
-                                                <div class="card-body">
-                                                    <p class="card-title">Card title</p>
-                                                    <p class="card-text">Some quick example text to build on the card
-                                                        title and make
-                                                        up the bulk of the card's content.</p>
-                                                </div>
+                                    <div class="card-deck">
+                                        <div class="card">
+                                            <a href="#"><img src="asset/img/ads1.jpg" class="card-img-top" alt="..." width="100%"></a>
+                                            <div class="card-body">
+                                                <a href="#">Title<p class="card-title" style="font-size:15px"></p></a>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4">
-                                            <div class="card">
-                                                <img src="asset/img/ads1.jpg" class="card-img-top" alt="..."
-                                                    height="130">
-                                                <div class="card-body">
-                                                    <p class="card-title">Card title</p>
-                                                    <p class="card-text">Some quick example text to build on the card
-                                                        title and make
-                                                        up the bulk of the card's content.</p>
-                                                </div>
+                                        <div class="card">
+                                            <a href="#"><img src="asset/img/ads1.jpg" class="card-img-top" alt="..." width="100%"></a>
+                                            <div class="card-body">
+                                                <a href="#">Title<p class="card-title" style="font-size:15px"><b></b></p></a>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4">
-                                            <div class="card">
-                                                <img src="asset/img/ads1.jpg" class="card-img-top" alt="..."
-                                                    height="130">
-                                                <div class="card-body">
-                                                    <p class="card-title">Card title</p>
-                                                    <p class="card-text">Some quick example text to build on the card
-                                                        title and make
-                                                        up the bulk of the card's content.</p>
-                                                </div>
+                                        <div class="card">
+                                            <a href="#"><img src="asset/img/ads1.jpg" class="card-img-top" alt="..." width="100%"></a>
+                                            <div class="card-body">
+                                                <a href="#">Title<p class="card-title" style="font-size:15px"><b></b></p></a>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <a href="#"><img src="asset/img/ads1.jpg" class="card-img-top" alt="..." width="100%"></a>
+                                            <div class="card-body">
+                                                <a href="#">Title<p class="card-title" style="font-size:15px"><b></b></p></a>
                                             </div>
                                         </div>
                                     </div>
@@ -127,7 +103,7 @@
                     <div class="header-lestes-new">
                         <div class="row">
                             <div class="col-sm-6">
-                                <h5 class="text-danger font-khbat">កីឡា <i class="far fa-futbol"></i></h5>
+                                <h5 class="text-danger font-khbat">កីឡា <img src="asset/img/ball.png" alt="" class="pb-2" width="20"></h5>
                             </div>
                             <div class="col-sm-6">
                                 <a href="topic.php?type=sport" class="float-right text-danger"><i class="fas fa-arrow-circle-right"></i></a>
@@ -152,8 +128,8 @@
                             ?>  
                                     <div class="card">
                                         <a href="#"><img src="<?= asset() ?>/upload/news/<?= $sport['feature_image'] ?>" class="card-img-top" alt="..." height="130"></a>
-                                        <div class="card-body">
-                                            <a href="#"><p class="card-title" style="font-size:15px"><b><?= $sport['title'] ?></b></p></a>
+                                        <div class="card-body" style="border-bottom:2px solid red">
+                                            <a href="#"><p class="card-title" style="font-size:15px; line-height:30px"><b><?= $sport['title'] ?></b></p></a>
                                         </div>
                                     </div>
                             <?php
@@ -170,7 +146,7 @@
                     <div class="header-lestes-new">
                         <div class="row">
                             <div class="col-sm-6">
-                                <h5 class="text-info font-khbat">ប្រដាល់</h5>
+                                <h5 class="text-info font-khbat">ប្រដាល់ <img src="asset/img/boxing.png" alt="" class="pb-2" width="20"></h5> 
                             </div>
                             <div class="col-sm-6">
                                 <a href="topic.php?type=boxing" class="float-right text-info"><i class="fas fa-arrow-circle-right"></i></a>
@@ -195,8 +171,8 @@
                             ?>  
                                     <div class="card">
                                         <a href="#"><img src="<?= asset() ?>/upload/news/<?= $sport['feature_image'] ?>" class="card-img-top" alt="..." height="130"></a>
-                                        <div class="card-body">
-                                            <a href="#"><p class="card-title" style="font-size:15px"><b><?= $sport['title'] ?></b></p></a>
+                                        <div class="card-body" style="border-bottom: solid 2px #007eed;">
+                                            <a href="#"><p class="card-title" style="font-size:15px; line-height:30px"><b><?= $sport['title'] ?></b></p></a>
                                         </div>
                                     </div>
                             <?php
@@ -214,15 +190,10 @@
 
             <!-- Start Right Sidebar -->
 
-            <div class="col-sm-3 right-sidebar">
-
-                <?php get_sm_ads(); ?>
-
-                <?php get_newest_news(); ?>
-
-            </div>
+            <?php include('template/right-sidebar.php'); ?>
+            
             <!-- End Right Sidebar -->
-        </div>
+       
 
 
 <?php include('template/footer.php'); ?>

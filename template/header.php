@@ -18,5 +18,6 @@
     <?php get_big_ads(); ?>
 
     <!-- Start Content -->
-    <div class="container bg-white pt-4" style="box-shadow: 1px 6px 5px black;">  
+    <div class="container bg-white pt-4 pb-5" style="box-shadow: 1px 6px 5px black;">  
         <div class="container">
+            <div class="row">

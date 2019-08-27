@@ -79,6 +79,20 @@ body{
     transition: all ease-in-out 0.2s;
 }
 
+/* for card new in topic.php */
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+/* link */
+
+
+.menu-item .menu-link:hover{
+    color: yellow !important;
+    transition: all ease-in-out .3s !important;
+}
+
 
 
 @font-face{

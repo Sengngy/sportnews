@@ -1,4 +1,4 @@
-
+        </div>
     </div>
     <!-- End Content -->
 </div>
@@ -7,6 +7,7 @@
         <div class="container" style="padding:20px 0 20px 0">
             <div class="row info">
                 <div class="col-sm-4">
+                    <p><img src="asset/img/sportnews.png" alt=""></p>
                     <h5 class="text-white">SportNews Entertainment</h5>
                     <p class="text-white">Copyright &copy; 2019 SportNews</p>
                 </div>

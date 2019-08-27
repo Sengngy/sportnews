@@ -239,6 +239,12 @@ EOT;
                         <p>Users</p>
                         </a>
                     </li>
+                    <li class="nav-item ">
+                        <a href="{$url}/pages/ads/index.php?status=1" class="nav-link bg-dark">
+                        <i class="fas fa-image"></i>&nbsp;&nbsp;&nbsp;
+                        <p>Ads</p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -331,10 +337,10 @@ EOT;
         $sql = "select menu_name, link from menus where active=1 order by menu_order ASC";
         $result = query($sql);
 ?>
-        <div class='menu-top bg-light'>
-        <div class='container'>
-            <nav class='navbar navbar-expand-lg navbar-light bg-light'>
-                <a class='navbar-brand' href='#'>SportNews</a>
+        <div class='menu-top bg-light mb-4 bg-dark'>
+        <div class='container bg-dark p-0'>
+            <nav class='navbar navbar-expand-lg navbar-light p-0'>
+                <a class='navbar-brand' href='<?= url_front(); ?>/index.php'><img src="asset/img/sportnews.png" alt=""></a>
                 <button class='navbar-toggler' type='button' data-toggle='collapse'
                     data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false'
                     aria-label='Toggle navigation'>
@@ -344,8 +350,8 @@ EOT;
                     <ul class='navbar-nav ml-auto'>
                         <?php foreach($result as $item){  ?>
 
-                        <li class='nav-item'>
-                            <a class='nav-link text-primary' href='<?= $item['link'] ?>'><?= $item['menu_name'] ?></a>
+                        <li class='nav-item menu-item'>
+                            <a class='nav-link menu-link text-white' href='<?= $item['link'] ?>'><?= $item['menu_name'] ?></a>
                         </li>
 
                         <?php } ?>
@@ -365,34 +371,47 @@ EOT;
 
 <?php
     function get_big_ads(){
-        $asset_front = asset_front();
-        $big_ads =<<<EOT
+        $asset = asset();
+        $sql = "select logo from ads where type='big'";
+        $result = query($sql);
+?>
         <!-- big Ads -->
         <div class="container mb-5 mt-3">
-            <div class="big-ads">
-                <img src="{$asset_front}/img/ads1.jpg" alt="" width="100%">
+            <?php foreach($result as $ads) { ?>
+            <div class="big-ads mb-2">
+                <img src="<?= $asset ?>/upload/ads/<?= $ads['logo']; ?>" alt="" width="100%">
             </div>
+            <?php } ?>
         </div>
         <!-- end Big Ads -->
-EOT;
-        echo $big_ads;
+<?php
     }
+?>
 
 
+
+
+
+<?php
     function get_sm_ads(){
         $asset_front = asset_front();
-        $sm_ads =<<<EOT
+        $sql = "select logo from ads where type='small'";
+        $result = query($sql);
+?>
+        <?php foreach($result as $ads) { ?>
         <div class="ads-item mb-3">
-            <img src="{$asset_front}/img/ads2.jpg" alt="" width="100%">
+            <img src="<?= asset(); ?>/upload/ads/<?= $ads['logo']; ?>" alt="" width="100%">
         </div>
-        <div class="ads-item mb-3">
-            <img src="{$asset_front}/img/ads4.jpg" alt="" width="100%">
-        </div>
-EOT;
-        echo $sm_ads;
+        <?php } ?>
+<?php
     }
+?>
 
 
+
+
+
+<?php
     function get_newest_news(){
         $asset_front = asset_front();
         $newest_news =<<<EOT
@@ -410,6 +429,50 @@ EOT;
         echo $newest_news;
     }
     
+
+
+
+
+
+
+
+
+
+
+    // Convert datetime to khmer
+    function num_to_khmer($year){
+        $kh = ['០','១','២','៣','៤','៥','៦','៧','៨','៩'];
+        $result = "";
+        $i = 0;
+        while($i<strlen($year))
+        {
+            if(ord($year[$i]) >=48 && ord($year[$i]) <=57)
+            {
+                $index = (int) $year[$i];
+                $result .= $kh[$index];
+            }
+           else{
+               $result .= $year[$i];
+           }
+            $i++;
+        }
+        return $result;
+    }
+
+    function month_to_khmer($month){
+        $kh_month = ['មករា','កុម្ភៈ','មីនា','មេសា','ឧសភា','មិថុនា','កក្កដា','សីហា','កញ្ញា','តុលា','វិច្ឆកា','ធ្នូ'];
+        return $kh_month[$month];
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 ?>
