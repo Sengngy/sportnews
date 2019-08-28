@@ -3,6 +3,9 @@
     include('../../config.php');
     include('../../lib/funcDB.php');
     include('../../function/function.php');
+
+    is_login();
+
 ?>
 
 <?php include('../../template/header.php'); ?>
@@ -75,7 +78,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="form-group">
-                        <button class="btn btn-primary float-right" name="btnEdit">ADD</button>
+                        <button class="btn btn-primary float-right" name="btnEdit">Edit</button>
                     </div>
                 </div>
             </form>

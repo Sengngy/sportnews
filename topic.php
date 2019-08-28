@@ -7,13 +7,13 @@
     $sub = '';
     if(isset($_GET['type'])){
         $sub = $_GET['type'];
-        $sql = "SELECT title, short_desc, feature_image
+        $sql = "SELECT news.id, title, short_desc, feature_image, cat_name
                 FROM news JOIN categories
                 ON news.cat_id = categories.id
                 WHERE cat_name = '{$sub}'
                 ORDER BY news.id DESC
                 ";
-        $sports = query($sql);
+        $news = query($sql);
     }
 
 ?>
@@ -31,20 +31,20 @@
             </div>
             <div class="wrapper">
                 <div class="row">
-                    <?php foreach($sports as $sport) { ?>
+                    <?php foreach($news as $item) { ?>
                     <div class="card ml-2 mb-3 border-0">
                         <div class="card-horizontal">
                             <div class="img-square-wrapper">
-                                <img class="" src="<?= asset() ?>/upload/news/<?= $sport['feature_image'] ?>" alt="Card image cap" style="width:300px; height:180px">
+                                <a href="detail.php?id=<?= $item['id']; ?>&type=<?= $item['cat_name']; ?>"><img class="" src="<?= asset() ?>/upload/news/<?= $item['feature_image'] ?>" alt="Card image cap" style="width:300px; height:180px"></a>
                             </div>
                             <div class="card-body pt-1">
-                                <a href="#"><p class="card-title" style="font-size:17px"><b><?= $sport['title'] ?></b></p></a>
-                                <p class="card-text"><?= $sport['short_desc']; ?></p>
+                                <a href="#"><p class="card-title" style="font-size:17px"><b><?= $item['title'] ?></b></p></a>
+                                <hr>
+                                <p class="card-text"><?= $item['short_desc']; ?></p>
                             </div>
                         </div>
                     </div>
                     <?php } ?>
-
                 </div>
             </div>
         </div>

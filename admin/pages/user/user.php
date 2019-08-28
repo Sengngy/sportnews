@@ -5,6 +5,8 @@
     include('../../lib/funcDB.php');
     include('../../function/function.php');
 
+    is_login();
+
     $select = '';
     $status = '';
     $message = '';

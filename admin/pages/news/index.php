@@ -3,16 +3,30 @@
     include('../../config.php');
     include('../../lib/funcDB.php');
     include('../../function/function.php');
+
+    is_login();
+
+
 ?>
 <?php include('../../template/header.php'); ?>
 
 <?php
     $status = '';
     $select = '';
+    $cat = '';
+    $where = '';
+    $filter_select = '';
 
-    if(isset($_GET['status'])){
+    if(isset($_GET['status']) && isset($_GET['type'])){
         $status = $_GET['status'];
+        $cat = $_GET['type'];
         $select = "selected";
+
+        if($cat != 'all'){
+            $where = "cat_name='{$cat}' and ";
+            $filter_select = 'selected';
+        }
+
     }
 ?>
 
@@ -44,6 +58,28 @@
     </select>
 </div>
 
+<div class="trash float-right mr-4" style="width:300px;">
+    <div class="row">
+        <div class="col-sm-7 text-right">
+            <label for="" class="pt-1">filter : </label>
+        </div>
+        <div class="col-sm-5">
+            <select name="cboFilter" id="cboFilter" class="form-control">
+                <option value="0" <?php echo $cat== 'all' ? 'selected' : '' ?>>All</option>
+            <?php 
+                $result = getSubCategory('categories','cat_name');
+                foreach($result as $sub){
+            ?>
+                <option value="<?= $sub['id'] ?>" <?= $sub['cat_name'] == $cat ? $filter_select : '' ?>><?= $sub['cat_name'] ?></option>
+            <?php
+                }
+            ?>
+            </select>
+        </div>
+    </div>
+</div>
+
+
 <br><br><br>
 
 <table class="table table-bordered table-hover text-center" id="dataTableNews">
@@ -59,7 +95,10 @@
         </thead>
         <tbody>
             <?php
-                $sql = "SELECT * FROM news WHERE active=$status";
+                $sql = "select news.id, title, type, user_id, cat_id
+                from news join categories
+                on news.cat_id = categories.id
+                where {$where} news.active = '$status'";
                 $news = query($sql);
                 $i = 1;
                 foreach($news as $new){

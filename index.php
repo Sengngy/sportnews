@@ -20,8 +20,7 @@
                                 <h5 class="text-success font-khbat">ព័ត៌មានថ្មីៗ</h5>
                             </div>
                             <div class="col-sm-6">
-                                <a href="#" class="float-right text-success"><i
-                                        class="fas fa-arrow-circle-right"></i></a>
+                    
                             </div>
                         </div>
                     </div>
@@ -30,65 +29,51 @@
 
                     <!-- Start lestes news item -->
 
-                    <div class="body-item-new body-lastes p-3" style="border-top: solid 2px green;">
+                    <div class="body-item-new body-lastes p-3" style="border-top: solid 2px green; height:223px">
                         <div id="lastes-news-slide" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
-                                <div class="carousel-item active" data-interval="2500">
-                                    <div class="card-deck">
+
+                                <?php
+                                    date_default_timezone_set('Asia/Phnom_Penh');
+                                    $date = date('Y-m-d');
+                                    $sql = "select news.id, title, feature_image, cat_name
+                                            from news join categories
+                                            on news.cat_id = categories.id
+                                            where date(news.create_at) <= '{$date}'
+                                            order by news.id desc limit 8;";
+                                    $result = query($sql);
+                                    $counter = 1;
+                                    $active = '';
+
+                                    foreach($result as $news) {
+                                        $active = $counter == 1 ? 'active' : '';
+
+                                        if($counter%4==1){
+                                            echo '<div class="carousel-item ' . $active . ' " data-interval="2500">
+                                                    <div class="card-deck">';
+                                        }
+                                ?>
+                                
                                         <div class="card">
-                                            <a href="#"><img src="asset/img/ads1.jpg" class="card-img-top" alt="..." width="100%"></a>
-                                            <div class="card-body">
-                                                <a href="#">Title<p class="card-title" style="font-size:15px"></p></a>
+                                            <a href="detail.php?id=<?= $news['id']; ?>&type=<?= $news['cat_name']; ?>">
+                                                <img src="<?= asset(); ?>/upload/news/<?= $news['feature_image'] ?>" class="card-img-top" alt="..." height="100">
+                                            </a>
+                                            <div class="card-body p-2">
+                                                <a href="#"><p class="card-title" style="font-size:14px"><b><?= $news['title']; ?></b></p></a>
                                             </div>
                                         </div>
-                                        <div class="card">
-                                            <a href="#"><img src="asset/img/ads1.jpg" class="card-img-top" alt="..." width="100%"></a>
-                                            <div class="card-body">
-                                                <a href="#">Title<p class="card-title" style="font-size:15px"><b></b></p></a>
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <a href="#"><img src="asset/img/ads1.jpg" class="card-img-top" alt="..." width="100%"></a>
-                                            <div class="card-body">
-                                                <a href="#">Title<p class="card-title" style="font-size:15px"><b></b></p></a>
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <a href="#"><img src="asset/img/ads1.jpg" class="card-img-top" alt="..." width="100%"></a>
-                                            <div class="card-body">
-                                                <a href="#">Title<p class="card-title" style="font-size:15px"><b></b></p></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item" data-interval="2500">
-                                    <div class="card-deck">
-                                        <div class="card">
-                                            <a href="#"><img src="asset/img/ads1.jpg" class="card-img-top" alt="..." width="100%"></a>
-                                            <div class="card-body">
-                                                <a href="#">Title<p class="card-title" style="font-size:15px"></p></a>
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <a href="#"><img src="asset/img/ads1.jpg" class="card-img-top" alt="..." width="100%"></a>
-                                            <div class="card-body">
-                                                <a href="#">Title<p class="card-title" style="font-size:15px"><b></b></p></a>
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <a href="#"><img src="asset/img/ads1.jpg" class="card-img-top" alt="..." width="100%"></a>
-                                            <div class="card-body">
-                                                <a href="#">Title<p class="card-title" style="font-size:15px"><b></b></p></a>
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <a href="#"><img src="asset/img/ads1.jpg" class="card-img-top" alt="..." width="100%"></a>
-                                            <div class="card-body">
-                                                <a href="#">Title<p class="card-title" style="font-size:15px"><b></b></p></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            
+
+                                <?php 
+                                        if($counter%4==0){
+                                            echo "</div>
+                                            </div>";
+                                        }
+                                        $counter++;
+                                    
+                                    } 
+                                   
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -118,16 +103,16 @@
                     <div class="body-item-new body-football p-3" style="border-top: solid 2px red;">
                         <div class="card-deck">
                             <?php
-                                $sql = "SELECT title, short_desc, feature_image
+                                $sql = "SELECT news.id, title, short_desc, feature_image, cat_name
                                         FROM news JOIN categories
                                         ON news.cat_id = categories.id
-                                        WHERE cat_name = 'sport' LIMIT 3
+                                        WHERE cat_name = 'sport' ORDER BY id DESC LIMIT 3
                                         ";
                                 $sports = query($sql);
                                 foreach($sports as $sport){
                             ?>  
                                     <div class="card">
-                                        <a href="#"><img src="<?= asset() ?>/upload/news/<?= $sport['feature_image'] ?>" class="card-img-top" alt="..." height="130"></a>
+                                        <a href="detail.php?id=<?= $sport['id']; ?>&type=<?= $sport['cat_name']; ?>"><img src="<?= asset() ?>/upload/news/<?= $sport['feature_image'] ?>" class="card-img-top" alt="..." height="130"></a>
                                         <div class="card-body" style="border-bottom:2px solid red">
                                             <a href="#"><p class="card-title" style="font-size:15px; line-height:30px"><b><?= $sport['title'] ?></b></p></a>
                                         </div>
@@ -161,18 +146,18 @@
                     <div class="body-item-new body-boxing p-3" style="border-top: solid 2px rgb(6, 158, 204);">
                         <div class="card-deck">
                             <?php
-                                $sql = "SELECT title, short_desc, feature_image
+                                $sql = "SELECT news.id, title, short_desc, feature_image, cat_name
                                         FROM news JOIN categories
                                         ON news.cat_id = categories.id
-                                        WHERE cat_name = 'boxing' LIMIT 3
+                                        WHERE cat_name = 'boxing' ORDER BY id DESC LIMIT 3
                                         ";
-                                $sports = query($sql);
-                                foreach($sports as $sport){
+                                $boxing = query($sql);
+                                foreach($boxing as $item){
                             ?>  
                                     <div class="card">
-                                        <a href="#"><img src="<?= asset() ?>/upload/news/<?= $sport['feature_image'] ?>" class="card-img-top" alt="..." height="130"></a>
+                                        <a href="detail.php?id=<?= $item['id']; ?>&type=<?= $item['cat_name'] ?>"><img src="<?= asset() ?>/upload/news/<?= $item['feature_image'] ?>" class="card-img-top" alt="..." height="130"></a>
                                         <div class="card-body" style="border-bottom: solid 2px #007eed;">
-                                            <a href="#"><p class="card-title" style="font-size:15px; line-height:30px"><b><?= $sport['title'] ?></b></p></a>
+                                            <a href="#"><p class="card-title" style="font-size:15px; line-height:30px"><b><?= $item['title'] ?></b></p></a>
                                         </div>
                                     </div>
                             <?php

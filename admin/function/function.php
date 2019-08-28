@@ -216,7 +216,7 @@ EOT;
                     <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
                     <li class="nav-item ">
-                        <a href="{$url}/pages/news/index.php?status=1" class="nav-link bg-dark">
+                        <a href="{$url}/pages/news/index.php?status=1&type=all" class="nav-link bg-dark">
                         <i class="fas fa-newspaper"></i>&nbsp;&nbsp;&nbsp;
                         <p>News</p>
                         </a>

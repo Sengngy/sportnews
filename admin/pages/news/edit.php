@@ -3,6 +3,9 @@
     include('../../config.php');
     include('../../lib/funcDB.php');
     include('../../function/function.php');
+
+    is_login();
+
 ?>
 
 <?php include('../../template/header.php'); ?>
@@ -124,7 +127,7 @@
                         <textarea name="longDesc" id="longDesc" class="form-control"><?= $news['long_desc'] ?></textarea>
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-primary float-right" name="btnEdit">ADD</button>
+                        <button class="btn btn-primary float-right" name="btnEdit">Edit</button>
                     </div>
                 </div>
                 <div class="col-sm-4">

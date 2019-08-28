@@ -75,6 +75,25 @@ $(document).ready(function(){
         }
     })
 
+    $('#cboFilter').on('change', function(e){
+        e.preventDefault();
+        var r = $(this).val();
+        if(r == 0){
+            document.location = "http://localhost/sportnews/admin/pages/news/index.php?status=1&type=all";
+            e.preventDefault();
+        }else if(r == 1){
+            document.location = "http://localhost/sportnews/admin/pages/news/index.php?status=1&type=sport";
+            e.preventDefault();
+        }else if(r == 2){
+            document.location = "http://localhost/sportnews/admin/pages/news/index.php?status=1&type=boxing";
+        }else if(r == 3){
+            document.location = "http://localhost/sportnews/admin/pages/news/index.php?status=1&type=tennis";
+        }
+    })
+
+
+    
+
     
 
     

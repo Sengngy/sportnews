@@ -4,6 +4,9 @@
     include('../../config.php');
     include('../../lib/funcDB.php');
     include('../../function/function.php');
+
+    is_login();
+
 ?>
 
 <?php include('../../template/header.php'); ?>
