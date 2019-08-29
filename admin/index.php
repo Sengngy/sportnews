@@ -48,14 +48,14 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>150</h3>
+                        <h3><?php echo getCountByID('news', 'id'); ?></h3>
 
                         <p>Posts</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-newspaper"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="<?= url() . '/pages/news/index.php?status=1&type=all' ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->

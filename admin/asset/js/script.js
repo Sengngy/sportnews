@@ -92,6 +92,30 @@ $(document).ready(function(){
     })
 
 
+    // add active on sidebar
+   
+    var path = window.location.pathname;
+
+    var index1 = path.lastIndexOf('pages') + 6;
+    var index2 = path.lastIndexOf('/');
+    var pages_name = path.slice(index1, index2);
+    
+    var path2 = window.location.pathname.split('/').pop();
+    var new_path = '';
+
+
+
+
+    if(pages_name == 'news'){
+        new_path = 'http://localhost/sportnews/admin/pages/' + pages_name + "/" + path2 + '?status=1&type=all';
+    }else if(pages_name == 'categories' || pages_name == 'menu' || pages_name == 'user' || pages_name =='ads'){
+        new_path = 'http://localhost/sportnews/admin/pages/' + pages_name + "/" + path2 + '?status=1';
+    }else{
+        new_path = 'http://localhost/sportnews/admin/' + path2;
+    }
+
+    $('ul.nav a[href="' + new_path + '"]').addClass('active');
+    
     
 
     

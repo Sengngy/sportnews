@@ -49,7 +49,7 @@
 <br><br>
 
 <a href="<?= url() . '/pages/news/create.php' ?>" class="btn btn-primary mb-3 ml-3">Create&nbsp;&nbsp;&nbsp;<i class="fas fa-plus-circle"></i></a>
-<a href="<?= url() . '/pages/news/index.php?status=1' ?>" class="btn btn-primary mb-3 ml-3">Refresh&nbsp;&nbsp;&nbsp;<i class="fas fa-sync-alt"></i></a>
+<a href="<?= url() . '/pages/news/index.php?status=1&type=all' ?>" class="btn btn-primary mb-3 ml-3">Refresh&nbsp;&nbsp;&nbsp;<i class="fas fa-sync-alt"></i></a>
 
 <div class="trash float-right" style="width:100px;">
     <select name="cboNews" id="cboNews" class="form-control">

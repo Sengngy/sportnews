@@ -27,3 +27,8 @@
     top: 0;
     left: 0;
 }
+
+a.nav-link.active{
+    background-color:white !important;
+    color: black !important;
+}
