@@ -99,30 +99,82 @@
     // if ($count%4 != 1) echo "</div>";
 
     function query($sql){
-        $con = mysqli_connect(SERVER, USERNAME, PASSWORD, DB);
+        $con = mysqli_connect('localhost', 'root', '', 'sportnews');
         $result = mysqli_query($con, $sql);
         mysqli_close($con);
         return $result;
     }
 
-    $cat = '';
-    $where = '';
-    if(isset($_GET['cat'])){
-        $cat = $_GET['cat'];
-        $where = "cat_name='{$cat}' and ";
+    function countData($sql){
+        $con = mysqli_connect('localhost', 'root', '', 'sportnews');
+        $result = mysqli_query($con, $sql);
+        $row = mysqli_fetch_assoc($result);
+        mysqli_close($con);
+        return (float) $row['maximum'];
     }
+
+    // $cat = '';
+    // $where = '';
+    // if(isset($_GET['cat'])){
+    //     $cat = $_GET['cat'];
+    //     $where = "cat_name='{$cat}' and ";
+    // }
     
     
 
-    $sql = "select title, type, user_id, cat_id
-    from news join categories
+    // $sql = "select title, type, user_id, cat_id
+    // from news join categories
+    // on news.cat_id = categories.id
+    // where {$where} news.active = 1";
+
+    // echo $sql;
+
+    $sql = "select count(news.id) as total
+    from news join categories 
     on news.cat_id = categories.id
-    where {$where} news.active = 1";
+    where cat_name = 'sport'";
 
-    echo $sql;
+
+    $result = query($sql);
+    $result = mysqli_fetch_assoc($result);
+    $total = (int) $result['total'];
+
+    $pages = ceil($total/4);
+
+    if(isset($_GET['mypage'])){
+        $per_page = ($_GET['mypage']-1) * 4;
+    }
+
+
 
     
 
 
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+        <br><br><br><br>
+
+        <div class="container">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <?php for($i=1; $i<=$pages; $i++) { ?>
+                    <li class="page-item"><a class="page-link" href="test.php?mypage=<?= $i ?>"><?= $i ?></a></li>
+                    <?php } ?>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+    
+</body>
+</html>
