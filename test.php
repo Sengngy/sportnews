@@ -132,7 +132,7 @@
     $sql = "select count(news.id) as total
     from news join categories 
     on news.cat_id = categories.id
-    where cat_name = 'sport'";
+    where cat_name = 'sport' and news.active = 1";
 
 
     $result = query($sql);

@@ -5,6 +5,9 @@ session_start();
 include('config.php');
 include('lib/funcDB.php');
 include('function/function.php');
+
+
+
 $sms = '';
 
 if(isset($_POST['btnLogin'])){
@@ -13,6 +16,9 @@ if(isset($_POST['btnLogin'])){
 
     $sms = login($username, $pass);
 }
+
+
+
 
 ?>
 <!DOCTYPE html>

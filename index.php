@@ -12,7 +12,7 @@
             <!-- start Conent -->
             <div class="col-sm-9 content" style="border-right:1px solid #e0e0e0;">
                 <!-- Start lestes news  -->
-                <div class="lastes-new">
+                <div class="lastes-new mb-5">
                     <!-- lestes new title -->
                     <div class="header-lestes-new">
                         <div class="row">
@@ -36,7 +36,7 @@
                                 <?php
                                     date_default_timezone_set('Asia/Phnom_Penh');
                                     $date = date('Y-m-d');
-                                    $sql = "select news.id, title, feature_image, cat_name
+                                    $sql = "select news.id, title, feature_image, cat_name,type
                                             from news join categories
                                             on news.cat_id = categories.id
                                             where date(news.create_at) <= '{$date}'
@@ -55,7 +55,7 @@
                                 ?>
                                 
                                         <div class="card">
-                                            <a href="detail.php?id=<?= $news['id']; ?>&type=<?= $news['cat_name']; ?>">
+                                            <a href="detail.php?id=<?= $news['id']; ?>&category=<?= $news['cat_name']; ?>&type=<?= $news['type'] ?>">
                                                 <img src="<?= asset(); ?>/upload/news/<?= $news['feature_image'] ?>" class="card-img-top" alt="..." height="100">
                                             </a>
                                             <div class="card-body p-2">
@@ -83,6 +83,51 @@
                 </div>
                 <!-- End lestes news  -->
 
+
+                <!-- Start Video News -->
+                <div class="video-news " style="margin-top:100px">
+                    <div class="header-lestes-new">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h5 class="text-danger font-khbat">វីដេអូ <img src="asset/img/youtube.png" alt="" class="pb-2" width="20"></h5>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="topic.php?category=sport&type=video" class="float-right text-danger"><i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- End video new title -->
+
+                    <!-- Start video news item -->
+
+                    <div class="body-item-new body-football p-3" style="border-top: solid 2px red;">
+                        <div class="card-deck">
+                            <?php
+                                $sql = "SELECT news.id, title, short_desc, feature_image, cat_name,type
+                                        FROM news JOIN categories
+                                        ON news.cat_id = categories.id
+                                        WHERE cat_name = 'sport' and news.type='video' ORDER BY id DESC LIMIT 3
+                                        ";
+                                $sports = query($sql);
+                                foreach($sports as $sport){
+                            ?>  
+                                    <div class="card">
+                                        <a href="detail.php?id=<?= $sport['id']; ?>&category=<?= $sport['cat_name']; ?>&type=<?= $sport['type'] ?>"><img src="<?= asset() ?>/upload/news/<?= $sport['feature_image'] ?>" class="card-img-top" alt="..." height="130"></a>
+                                        <div class="card-body" style="border-bottom:2px solid red">
+                                            <a href="#"><p class="card-title" style="font-size:15px; line-height:30px"><b><?= $sport['title'] ?></b></p></a>
+                                        </div>
+                                    </div>
+                            <?php
+                                }
+                            ?>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- End Video News -->
+
+
                 <!-- Start football news -->
                 <div class="football-news  mt-5 mb-5">
                     <div class="header-lestes-new">
@@ -91,7 +136,7 @@
                                 <h5 class="text-danger font-khbat">កីឡា <img src="asset/img/ball.png" alt="" class="pb-2" width="20"></h5>
                             </div>
                             <div class="col-sm-6">
-                                <a href="topic.php?type=sport" class="float-right text-danger"><i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="topic.php?category=sport&type=photo" class="float-right text-danger"><i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -103,16 +148,16 @@
                     <div class="body-item-new body-football p-3" style="border-top: solid 2px red;">
                         <div class="card-deck">
                             <?php
-                                $sql = "SELECT news.id, title, short_desc, feature_image, cat_name
+                                $sql = "SELECT news.id, title, short_desc, feature_image, cat_name,type
                                         FROM news JOIN categories
                                         ON news.cat_id = categories.id
-                                        WHERE cat_name = 'sport' ORDER BY id DESC LIMIT 3
+                                        WHERE cat_name = 'sport' and type='photo' ORDER BY id DESC LIMIT 3
                                         ";
                                 $sports = query($sql);
                                 foreach($sports as $sport){
                             ?>  
                                     <div class="card">
-                                        <a href="detail.php?id=<?= $sport['id']; ?>&type=<?= $sport['cat_name']; ?>"><img src="<?= asset() ?>/upload/news/<?= $sport['feature_image'] ?>" class="card-img-top" alt="..." height="130"></a>
+                                        <a href="detail.php?id=<?= $sport['id']; ?>&category=<?= $sport['cat_name']; ?>&type=<?= $sport['type'] ?>"><img src="<?= asset() ?>/upload/news/<?= $sport['feature_image'] ?>" class="card-img-top" alt="..." height="130"></a>
                                         <div class="card-body" style="border-bottom:2px solid red">
                                             <a href="#"><p class="card-title" style="font-size:15px; line-height:30px"><b><?= $sport['title'] ?></b></p></a>
                                         </div>
@@ -127,14 +172,14 @@
                 <!--  End football news  -->
 
                 <!-- Start Boxing News -->
-                <div class="football-news  mt-5 mb-5">
+                <div class="boxing-news  mt-5 mb-5">
                     <div class="header-lestes-new">
                         <div class="row">
                             <div class="col-sm-6">
                                 <h5 class="text-info font-khbat">ប្រដាល់ <img src="asset/img/boxing.png" alt="" class="pb-2" width="20"></h5> 
                             </div>
                             <div class="col-sm-6">
-                                <a href="topic.php?type=boxing" class="float-right text-info"><i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="topic.php?category=boxing&type=photo" class="float-right text-info"><i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -146,16 +191,16 @@
                     <div class="body-item-new body-boxing p-3" style="border-top: solid 2px rgb(6, 158, 204);">
                         <div class="card-deck">
                             <?php
-                                $sql = "SELECT news.id, title, short_desc, feature_image, cat_name
+                                $sql = "SELECT news.id, title, short_desc, feature_image, cat_name,type
                                         FROM news JOIN categories
                                         ON news.cat_id = categories.id
-                                        WHERE cat_name = 'boxing' ORDER BY id DESC LIMIT 3
+                                        WHERE cat_name = 'boxing' and type='photo' ORDER BY id DESC LIMIT 3
                                         ";
                                 $boxing = query($sql);
                                 foreach($boxing as $item){
                             ?>  
                                     <div class="card">
-                                        <a href="detail.php?id=<?= $item['id']; ?>&type=<?= $item['cat_name'] ?>"><img src="<?= asset() ?>/upload/news/<?= $item['feature_image'] ?>" class="card-img-top" alt="..." height="130"></a>
+                                        <a href="detail.php?id=<?= $item['id']; ?>&category=<?= $item['cat_name'] ?>&type=<?= $item['type'] ?>"><img src="<?= asset() ?>/upload/news/<?= $item['feature_image'] ?>" class="card-img-top" alt="..." height="130"></a>
                                         <div class="card-body" style="border-bottom: solid 2px #007eed;">
                                             <a href="#"><p class="card-title" style="font-size:15px; line-height:30px"><b><?= $item['title'] ?></b></p></a>
                                         </div>

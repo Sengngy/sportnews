@@ -10,10 +10,12 @@
 <?php
 
     $id = '';
-    $sub = '';
-    if(isset($_GET['id']) && isset($_GET['type'])){
+    $catname = '';
+    $type = '';
+    if(isset($_GET['id']) && isset($_GET['category']) && isset($_GET['type'])){
         $id = $_GET['id'];
-        $sub = $_GET['type'];
+        $catname = $_GET['category'];
+        $type = $_GET['type'];
         
         $sql = "
                 select title, long_desc, news.create_at, lastname
@@ -21,7 +23,7 @@
                 on news.user_id = users.id
                 join categories
                 on news.cat_id = categories.id
-                where categories.cat_name = '{$sub}' and news.id = '{$id}';  
+                where categories.cat_name = '{$catname}' and news.id = '{$id}' and type='{$type}';  
                
                 ";
 

@@ -217,7 +217,7 @@ EOT;
                     with font-awesome or any other icon font library -->
                     <li class="nav-item list-item">
                         <a href="{$url}/index.php" class="nav-link list-link bg-dark">
-                        <i class="fas fa-dashboard"></i>&nbsp;&nbsp;&nbsp;
+                        <i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;&nbsp;
                         <p>Dashboard</p>
                         </a>
                     </li>
@@ -237,6 +237,12 @@ EOT;
                         <a href="{$url}/pages/menu/index.php?status=1" class="nav-link bg-dark">
                         <i class="fas fa-bars"></i>&nbsp;&nbsp;&nbsp;
                         <p>Menus</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="{$url}/pages/page/index.php" class="nav-link bg-dark">
+                        <i class="fas fa-file"></i>&nbsp;&nbsp;&nbsp;
+                        <p>Pages</p>
                         </a>
                     </li>
                     <li class="nav-item ">
