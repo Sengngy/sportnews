@@ -12,4 +12,6 @@
     define('PASSWORD','');
     define('DB','sportnews');
 
+    define('ROW','4');
+
 ?>

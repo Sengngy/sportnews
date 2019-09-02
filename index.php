@@ -59,7 +59,7 @@
                                                 <img src="<?= asset(); ?>/upload/news/<?= $news['feature_image'] ?>" class="card-img-top" alt="..." height="100">
                                             </a>
                                             <div class="card-body p-2">
-                                                <a href="#"><p class="card-title" style="font-size:14px"><b><?= $news['title']; ?></b></p></a>
+                                                <a href="detail.php?id=<?= $news['id']; ?>&category=<?= $news['cat_name']; ?>&type=<?= $news['type'] ?>"><p class="card-title" style="font-size:14px"><b><?= $news['title']; ?></b></p></a>
                                             </div>
                                         </div>
                             
@@ -115,7 +115,7 @@
                                     <div class="card">
                                         <a href="detail.php?id=<?= $sport['id']; ?>&category=<?= $sport['cat_name']; ?>&type=<?= $sport['type'] ?>"><img src="<?= asset() ?>/upload/news/<?= $sport['feature_image'] ?>" class="card-img-top" alt="..." height="130"></a>
                                         <div class="card-body" style="border-bottom:2px solid red">
-                                            <a href="#"><p class="card-title" style="font-size:15px; line-height:30px"><b><?= $sport['title'] ?></b></p></a>
+                                            <a href="detail.php?id=<?= $sport['id']; ?>&category=<?= $sport['cat_name']; ?>&type=<?= $sport['type'] ?>"><p class="card-title" style="font-size:15px; line-height:30px"><b><?= $sport['title'] ?></b></p></a>
                                         </div>
                                     </div>
                             <?php
@@ -159,7 +159,7 @@
                                     <div class="card">
                                         <a href="detail.php?id=<?= $sport['id']; ?>&category=<?= $sport['cat_name']; ?>&type=<?= $sport['type'] ?>"><img src="<?= asset() ?>/upload/news/<?= $sport['feature_image'] ?>" class="card-img-top" alt="..." height="130"></a>
                                         <div class="card-body" style="border-bottom:2px solid red">
-                                            <a href="#"><p class="card-title" style="font-size:15px; line-height:30px"><b><?= $sport['title'] ?></b></p></a>
+                                            <a href="detail.php?id=<?= $sport['id']; ?>&category=<?= $sport['cat_name']; ?>&type=<?= $sport['type'] ?>"><p class="card-title" style="font-size:15px; line-height:30px"><b><?= $sport['title'] ?></b></p></a>
                                         </div>
                                     </div>
                             <?php
@@ -202,7 +202,7 @@
                                     <div class="card">
                                         <a href="detail.php?id=<?= $item['id']; ?>&category=<?= $item['cat_name'] ?>&type=<?= $item['type'] ?>"><img src="<?= asset() ?>/upload/news/<?= $item['feature_image'] ?>" class="card-img-top" alt="..." height="130"></a>
                                         <div class="card-body" style="border-bottom: solid 2px #007eed;">
-                                            <a href="#"><p class="card-title" style="font-size:15px; line-height:30px"><b><?= $item['title'] ?></b></p></a>
+                                            <a href="detail.php?id=<?= $item['id']; ?>&category=<?= $item['cat_name'] ?>&type=<?= $item['type'] ?>"><p class="card-title" style="font-size:15px; line-height:30px"><b><?= $item['title'] ?></b></p></a>
                                         </div>
                                     </div>
                             <?php

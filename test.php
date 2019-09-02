@@ -113,6 +113,17 @@
         return (float) $row['maximum'];
     }
 
+    function getTotalRow($sql){
+        $con = mysqli_connect('localhost', 'root', '', 'sportnews');
+        $total = mysqli_query($con, $sql);
+        $total = mysqli_num_rows($total);
+        return $total;
+    }
+
+    function getPagination(){
+        
+    }
+
     // $cat = '';
     // $where = '';
     // if(isset($_GET['cat'])){
@@ -162,6 +173,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+
+    <?php
+        echo getTotalRow('select * from news join categories on news.cat_id = categories.id where cat_name="sport"');
+    ?>
         <br><br><br><br>
 
         <div class="container">

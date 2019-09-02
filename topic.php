@@ -13,8 +13,9 @@
     if(isset($_GET['page'])){
         $page = $_GET['page'];
         $current_start = $page;
-        $per_page = ($page-1) * 4;
+        $per_page = ($page-1) * ROW;
     }
+
 
     if(isset($_GET['category']) && isset($_GET['type'])){
         $catname = $_GET['category'];
@@ -25,7 +26,7 @@
                 WHERE cat_name = '{$catname}'
                 AND type = '{$type}'
                 ORDER BY news.id DESC
-                Limit $per_page,4";
+                Limit $per_page," . ROW;
         
     }else{
         $type = $_GET['type'];
@@ -34,7 +35,7 @@
                 ON news.cat_id = categories.id
                 WHERE type = '{$type}'
                 ORDER BY news.id DESC
-                Limit $per_page,4";
+                Limit $per_page," . ROW;
     }
 
     $news = query($sql);
@@ -91,7 +92,7 @@
                 
                 $result = query($sql);
                 $row = mysqli_fetch_assoc($result);
-                $totalpage = ceil($row['total']/4);
+                $totalpage = ceil($row['total']/ROW);
             
             ?>
 

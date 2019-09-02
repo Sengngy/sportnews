@@ -384,14 +384,14 @@ EOT;
 <?php
     function get_big_ads(){
         $asset = asset();
-        $sql = "select logo from ads where type='big'";
+        $sql = "select link,logo from ads where type='big'";
         $result = query($sql);
 ?>
         <!-- big Ads -->
         <div class="container mb-5 mt-3">
             <?php foreach($result as $ads) { ?>
             <div class="big-ads mb-2">
-                <img src="<?= $asset ?>/upload/ads/<?= $ads['logo']; ?>" alt="" width="100%">
+                <a href="<?= $ads['link'] ?>" target="_blank"><img src="<?= $asset ?>/upload/ads/<?= $ads['logo']; ?>" alt="" width="100%"></a>
             </div>
             <?php } ?>
         </div>
@@ -407,12 +407,12 @@ EOT;
 <?php
     function get_sm_ads(){
         $asset_front = asset_front();
-        $sql = "select logo from ads where type='small'";
+        $sql = "select link, logo from ads where type='small'";
         $result = query($sql);
 ?>
         <?php foreach($result as $ads) { ?>
         <div class="ads-item mb-3">
-            <img src="<?= asset(); ?>/upload/ads/<?= $ads['logo']; ?>" alt="" width="100%">
+            <a href="<?= $ads['link'] ?>" target="_blank"><img src="<?= asset(); ?>/upload/ads/<?= $ads['logo']; ?>" alt="" width="100%"></a>
         </div>
         <?php } ?>
 <?php
@@ -479,6 +479,7 @@ EOT;
 
 
 
+    
 
 
 
