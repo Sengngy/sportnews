@@ -158,6 +158,9 @@
     
         }); 
 
+        $('#sidebar li a').removeClass('active');
+        $('#menu-news a').addClass('active');
+
     });
  </script>
 

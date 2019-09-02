@@ -113,4 +113,15 @@
 
 <?php include('../../template/footer1.php'); ?>
 
+<script>
+
+
+    $(document).ready(function(){
+        $('#sidebar li a').removeClass('active');
+        $('#menu-ads a').addClass('active');
+    });
+
+
+</script>
+
 <?php include('../../template/footer.php'); ?>

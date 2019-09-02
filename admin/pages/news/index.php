@@ -139,6 +139,9 @@
 
     $(document).ready(function(){
         $('#dataTableNews').DataTable();
+
+        $('#sidebar li a').removeClass('active');
+        $('#menu-news a').addClass('active');
     });
 
 </script>

@@ -20,7 +20,8 @@
 
     if(isset($_POST['btnEdit'])){
         $cat_name = $_POST['cat_name'];
-        $sql = "UPDATE categories set cat_name='{$cat_name}' WHERE id=$id";
+        $cat_name_kh = $_POST['cat_name_kh'];
+        $sql = "UPDATE categories set cat_name='{$cat_name}', cat_name_kh='{$cat_name_kh}' WHERE id=$id";
         $result = none_query($sql);
         if($result){
             $sms = 'Update Successful!';
@@ -75,6 +76,10 @@
                         <label for="">Category</label>
                         <input type="text" name="cat_name" class="form-control" value="<?=$categories['cat_name']?>">
                     </div>
+                    <div class="form-group">
+                        <label for="">Category Name Khmer</label>
+                        <input type="text" name="cat_name_kh" class="form-control" value="<?=$categories['cat_name_kh']?>">
+                    </div>
                 </div>
                 <div class="card-footer">
                     <div class="form-group">
@@ -89,5 +94,15 @@
 <!-- end form edit categories -->
 
 <?php include('../../template/footer1.php'); ?>
+
+<script>
+
+    $(document).ready(function(e){
+
+        $('#sidebar li a').removeClass('active');
+        $('#menu-category a').addClass('active');
+    });
+
+</script>
 
 <?php include('../../template/footer.php'); ?>

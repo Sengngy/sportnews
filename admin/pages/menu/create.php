@@ -100,4 +100,15 @@
 
 <?php include('../../template/footer1.php'); ?>
 
+<script>
+
+    $(document).ready(function(){
+
+        $('#sidebar li a').removeClass('active');
+        $('#menu-menu a').addClass('active');
+
+    });
+
+</script>
+
 <?php include('../../template/footer.php'); ?>

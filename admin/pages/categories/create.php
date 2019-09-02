@@ -15,7 +15,8 @@
 
     if(isset($_POST['btnAdd'])){
         $cat_name = $_POST['cat_name'];
-        $sql = "INSERT INTO categories(cat_name) VALUES ('{$cat_name}')";
+        $cat_name_kh = $_POST['cat_name_kh'];
+        $sql = "INSERT INTO categories(cat_name, cat_name_kh) VALUES ('{$cat_name}', '{$cat_name_kh}')";
         $result = none_query($sql);
         if($result){
             $sms = 'Insert Successful';
@@ -65,8 +66,12 @@
             <form action="" method="POST" class="form-horizontal">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="">Category</label>
+                        <label for="">Category Name</label>
                         <input type="text" name="cat_name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Category Name Khmer</label>
+                        <input type="text" name="cat_name_kh" class="form-control">
                     </div>
                 </div>
                 <div class="card-footer">
@@ -82,5 +87,14 @@
 <!-- end form create menu -->
 
 <?php include('../../template/footer1.php'); ?>
+
+<script>
+
+    $(document).ready(function(){
+        $('#sidebar li a').removeClass('active');
+        $('#menu-category a').addClass('active');
+    });
+
+</script>
 
 <?php include('../../template/footer.php'); ?>

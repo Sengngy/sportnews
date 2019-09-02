@@ -330,6 +330,8 @@ if(isset($_POST['btnAddUser'])){
 
     $(document).ready(function(){
         $('#dataTableUser').DataTable();
+        $('#sidebar li a').removeClass('active');
+        $('#menu-user a').addClass('active');
     });
 
 </script>

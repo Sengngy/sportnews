@@ -50,8 +50,15 @@
         <div class="col-sm-9 content" style="border-right:2px solid #e0e0e0;">
             <div class="cat bg-danger mb-4" style="padding: 10px 0 7px 5px">
                 <h4 class="text-white text-center">
-                    <?php echo $catname == 'sport' ? 'កីឡា' : '' ?>
-                    <?php echo $catname == 'boxing' ? 'ប្រដាល់' : '' ?>
+                    <?php
+                        $sql = "select * from categories where active=1";
+                        $cat = query($sql);
+                        foreach($cat as $c) { 
+                            if($catname == $c['cat_name']){
+                                echo $c['cat_name_kh'];
+                            }
+                        }
+                    ?>
                 </h4>
             </div>
             <div class="wrapper">

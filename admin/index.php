@@ -4,6 +4,8 @@
     include('lib/funcDB.php');
     include('function/function.php');
 
+    
+
     is_login();
 
 ?>
@@ -69,6 +71,14 @@
 
 <?php include('template/footer1.php'); ?>
 
+<script>
+
+    $(document).ready(function(){
+        $('#sidebar li a').removeClass('active');
+        $('#menu-dashboard a').addClass('active');
+    });
+
+</script>
 
 <?php include('template/footer.php'); ?>
     

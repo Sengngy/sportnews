@@ -94,6 +94,9 @@
             height : 500
         }); 
 
+        $('#sidebar li a').removeClass('active');
+        $('#menu-page a').addClass('active');
+
     });
  </script>
 

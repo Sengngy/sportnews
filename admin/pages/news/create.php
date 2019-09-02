@@ -56,7 +56,7 @@
 
 <br><br>
 
-<a href="<?= url() . '/pages/news/index.php?status=1' ?>" class="btn btn-primary mb-3 ml-3">Back&nbsp;&nbsp;&nbsp;<i class="fas fa-arrow-left"></i></a>
+<a href="<?= url() . '/pages/news/index.php?status=1&type=all' ?>" class="btn btn-primary mb-3 ml-3">Back&nbsp;&nbsp;&nbsp;<i class="fas fa-arrow-left"></i></a>
 
 <br><br>
 
@@ -140,6 +140,10 @@
             height:500,
     
         }); 
+
+        $('#sidebar li a').removeClass('active');
+        $('#menu-news a').addClass('active');
+  
 
     });
  </script>

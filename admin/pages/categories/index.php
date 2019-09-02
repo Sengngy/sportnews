@@ -91,20 +91,22 @@
         <thead>
             <tr class="bg-dark">
                 <th>#</th>
-                <th>Category</th>
+                <th>Category Name</th>
+                <th>Category Name Khmer</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <?php
                 $sql = "SELECT * FROM categories WHERE active=$status";
-                $categories = none_query($sql);
+                $categories = query($sql);
                 $i=1;
                 foreach($categories as $category){
             ?>
                 <tr style="background-color:white">
                     <td><?= $i; ?></td>
                     <td><?= $category['cat_name']; ?></td>
+                    <td><?= $category['cat_name_kh']; ?></td>
                     <td>
                     <a href="<?= url() . '/pages/categories/edit.php?id=' . $category['id'] ?>" id="btnEdit"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
                         <?php 
@@ -138,6 +140,13 @@
 
     $(document).ready(function(){
         $('#dataTableCat').DataTable();
+
+
+        $('#sidebar li a').removeClass('active');
+        $('#menu-category a').addClass('active');
+
+
+
     });
 
 </script>

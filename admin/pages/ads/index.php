@@ -142,6 +142,8 @@
 
     $(document).ready(function(){
         $('#dataTableCat').DataTable();
+        $('#sidebar li a').removeClass('active');
+        $('#menu-ads a').addClass('active');
     });
 
 </script>

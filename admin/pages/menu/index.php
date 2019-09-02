@@ -184,6 +184,10 @@
 
     $(document).ready(function(){
         $('#dataTableMenu').DataTable();
+
+        $('#sidebar li a').removeClass('active');
+        $('#menu-menu a').addClass('active');
+
     });
 
 </script>

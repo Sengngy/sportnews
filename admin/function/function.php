@@ -212,46 +212,46 @@ EOT;
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
-                <ul class="nav list nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <ul class="nav list nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" id="sidebar">
                     <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
-                    <li class="nav-item list-item">
+                    <li class="nav-item" id="menu-dashboard">
                         <a href="{$url}/index.php" class="nav-link list-link bg-dark">
                         <i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;&nbsp;
                         <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="menu-news">
                         <a href="{$url}/pages/news/index.php?status=1&type=all" class="nav-link bg-dark">
                         <i class="fas fa-newspaper"></i>&nbsp;&nbsp;&nbsp;
                         <p>News</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item" id="menu-category">
                         <a href="{$url}/pages/categories/index.php?status=1" class="nav-link bg-dark">
                         <i class="fas fa-layer-group"></i>&nbsp;&nbsp;&nbsp;
                         <p>Categories</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item" id="menu-menu">
                         <a href="{$url}/pages/menu/index.php?status=1" class="nav-link bg-dark">
                         <i class="fas fa-bars"></i>&nbsp;&nbsp;&nbsp;
                         <p>Menus</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item " id="menu-page">
                         <a href="{$url}/pages/page/index.php" class="nav-link bg-dark">
                         <i class="fas fa-file"></i>&nbsp;&nbsp;&nbsp;
                         <p>Pages</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item " id="menu-user">
                         <a href="{$url}/pages/user/user.php?status=1" class="nav-link bg-dark">
                         <i class="fas fa-users"></i>&nbsp;&nbsp;&nbsp;
                         <p>Users</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item " id="menu-ads">
                         <a href="{$url}/pages/ads/index.php?status=1" class="nav-link bg-dark">
                         <i class="fas fa-image"></i>&nbsp;&nbsp;&nbsp;
                         <p>Ads</p>
@@ -336,6 +336,8 @@ EOT;
         $js =<<<EOT
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="{$asset_front}/js/bootstrap.min.js"></script>
+        <script src="{$asset_front}/js/script.js"></script>
+        
 EOT;
         echo $js;
     }
@@ -429,7 +431,7 @@ EOT;
         $newest_news =<<<EOT
         <div class="newest-news">
             <div class="header-newest-news">
-                <p>ព័ត៌មានថ្មីៗ</p>
+                <p>ព័ត៌មានថ្មីៗ <small>(not finish this section)</small></p>
             </div>
             <ul class="item-newest-news">
                 <li><a href="#">ប្រវត្តិ​សាស្ត្រ​ហើយ ​កម្ពុជា ​ទម្លាក់​​វៀតណាម ពី AFF U18</a></li>
